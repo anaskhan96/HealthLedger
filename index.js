@@ -13,7 +13,7 @@ app.set('view engine','ejs');
 
 app.get('/',function(request,response){
 	console.log("GET 200");
-	response.render("Starfield.ejs");
+	response.end("hwejhwd");
 });
 
 app.listen(app.get('port'),function(){
