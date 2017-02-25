@@ -17,7 +17,7 @@ app.get('/',function(request,response){
 });
 
 app.get('/ledger',function(request,response){
-	response.end("Work to do over here.hwdwejh..")
+	response.end("Work to do over here...")
 });
 
 app.listen(app.get('port'),function(){
