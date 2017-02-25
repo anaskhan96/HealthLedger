@@ -13,7 +13,11 @@ app.set('view engine','ejs');
 
 app.get('/',function(request,response){
 	console.log("GET 200");
-	response.end("Starfield.ejs");
+	response.render("Starfield.ejs");
+});
+
+app.get('/ledger',function(request,response){
+	response.end("Work to do over here...")
 });
 
 app.listen(app.get('port'),function(){
