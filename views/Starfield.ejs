@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Anas</title>
+</head>
+<!-- the inline CSS on the body ("margin: 0px;") removes the extra space
+     around the canvas, making it flush with the edge of the page -->
+<body style="margin: 0px;">
+  <canvas id="canvas" width="1280" height="632">
+  <script>// shim layer with setTimeout fallback
+// from http://paulirish.com/2011/requestanimationframe-for-smart-animating/
+window.requestAnimFrame = (function(){
+  return  window.requestAnimationFrame       || 
+          window.webkitRequestAnimationFrame || 
+          window.mozRequestAnimationFrame    || 
+          window.oRequestAnimationFrame      || 
+          window.msRequestAnimationFrame     || 
+          function( callback ){
+            window.setTimeout(callback, 1000 / 60);
+          };
+})();</script>
+  <script>
+  	
+var canvas = document.getElementById("canvas");
+var c = canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+var numStars = 1000;
+var radius = 1;
+var focalLength = canvas.width;
+
+var centerX, centerY;
+
+var stars = [], star;
+var i;
+
+var animate = false;
+
+initializeStars();
+
+function executeFrame(){
+  if(animate)
+    requestAnimFrame(executeFrame);
+  moveStars();
+  drawStars();
+}
+
+function initializeStars(){
+  centerX = canvas.width / 2;
+  centerY = canvas.height / 2;
+  
+  stars = [];
+  for(i = 0; i < numStars; i++){
+    star = {
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      z: Math.random() * canvas.width
+    };
+    stars.push(star);
+  }
+}
+
+function moveStars(){
+  for(i = 0; i < numStars; i++){
+    star = stars[i];
+    star.z--;
+    
+    if(star.z <= 0){
+      star.z = canvas.width;
+    }
+  }
+}
+
+function txt(){
+  var t = "ANAS".split("").join(String.fromCharCode(0x2004));
+  var k = "KHAN".split("").join(String.fromCharCode(0x2004));
+  c.font = "3.5em Philosopher";
+  c.fillStyle = "white";
+  c.fillText(t, (canvas.width - c.measureText(t).width) * 0.5, canvas.height * 0.5);
+  c.fillText(k, (canvas.width - c.measureText(k).width) * 0.5, canvas.height * 0.5 +50);
+}
+
+
+function drawStars(){
+  var pixelX, pixelY, pixelRadius;
+  // Resize to the screen
+  /*if(canvas.width != window.innerWidth || canvas.width != window.innerWidth){
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    initializeStars();
+  }*/
+
+  c.fillStyle = "black";
+  c.fillRect(0,0, canvas.width, canvas.height);
+  c.fillStyle = "white";
+  txt();
+  for(i = 0; i < numStars; i++){
+    star = stars[i];
+    
+    pixelX = (star.x - centerX) * (focalLength / star.z);
+    pixelX += centerX;
+    pixelY = (star.y - centerY) * (focalLength / star.z);
+    pixelY += centerY;
+    pixelRadius = radius * (focalLength / star.z);
+    
+    c.beginPath();
+    c.arc(pixelX, pixelY, pixelRadius, 0, 2 * Math.PI);
+    c.fill();
+  }
+}
+
+canvas.addEventListener("mousemove",function(e){
+  focalLength = e.x;
+});
+
+// Kick off the animation when the mouse enters the canvas
+canvas.addEventListener('mouseover', function(e){
+  animate = true;
+  executeFrame();
+});
+
+// Pause animation when the mouse exits the canvas
+canvas.addEventListener("mouseout",function(e){
+  mouseDown = false;
+  animate = false;
+});
+
+window.addEventListener("resize",function(){
+	canvas.width=window.innerWidth;
+	canvas.height=window.innerHeight;
+	initializeStars();
+},false);
+
+// Draw the first frame to start animation
+executeFrame();
+  </script>
+ 
+ </canvas></body></html>
