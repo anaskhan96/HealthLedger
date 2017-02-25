@@ -15,10 +15,6 @@ app.get('/',function(request,response){
 	response.render("Starfield.ejs");
 });
 
-app.get('/ledger',function(request,response){
-	response.send("Work to do over here...");
-});
-
 app.listen(app.get('port'),function(){
 	console.log("Node app is running on localhost:",app.get('port'));
 });
