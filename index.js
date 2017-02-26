@@ -11,13 +11,8 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.set('views',__dirname+'/views');
 app.set('view engine','ejs');
 
-app.get('/',function(request,response){
-	console.log("GET 200");
-	response.render("Starfield.ejs");
-});
-
 app.get('/ledger',function(request,response){
-	response.end("Work to do over here...")
+	response.render("ledger_home.ejs");
 });
 
 app.listen(app.get('port'),function(){
