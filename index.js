@@ -28,7 +28,6 @@ app.post('/ledger',function(request,response){
 	var test=request.body;
 	collection.insert({"id":1,"name":test['msg']});
 	console.log("Inserted!");
-	
 });
 
 app.listen(app.get('port'),function(){
