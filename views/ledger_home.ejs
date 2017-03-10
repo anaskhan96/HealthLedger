@@ -13,7 +13,7 @@
 				data: JSON.stringify({'msg':name}),
 				success: function(response){
 					var p=document.createElement('p');
-					p.innerHTML=response['_id'];
+					p.innerHTML=response["name"];
 					document.body.appendChild(p);
 				},
 				error: function(error){
