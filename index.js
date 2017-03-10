@@ -28,10 +28,11 @@ app.post('/ledger',function(request,response){
 	var test=request.body;
 	collection.insert({"id":1,"name":test['msg']});
 	console.log("Inserted!");
-	collection.find({"id":1}).toArray(function(err,result){
-		console.log(result);
-	});
-	response.send({"name":"post is working"});
+	collection.find({}).toArray(function(err, docs) {
+    	console.log("Found the following records");
+    	console.dir(docs);
+    	response.send(docs[2]);
+  	});
 });
 
 app.listen(app.get('port'),function(){
