@@ -1,5 +1,7 @@
 # Health Ledger [WIP]
 
+[![Build Status](https://travis-ci.org/anaskhan96/HealthLedger.svg?branch=master)](https://travis-ci.org/anaskhan96/HealthLedger)
+
 ### Local setup
 
 Install NodeJS and MongoDB. Run `mongod` in a second shell.
