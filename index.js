@@ -16,19 +16,26 @@ mc.connect(url,function(err,db){
 app.set('port',5000);
 
 app.use(express.static(__dirname+'/public')); // directory for all css and js
+app.use('/favicon.ico', express.static('images/favicon.ico'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
 app.set('views',__dirname+'/views'); // directory for all ejs files
 app.set('view engine','ejs'); // using .ejs instead of .html
 
+app.get('/login',function(req,res){
+	console.log("GET /login")
+	res.render("login.ejs")
+})
 // GET /ledger
 app.get('/ledger',function(request,response){
+	console.log("GET /ledger")
 	response.render("ledger_home.ejs");
 });
 
 // POST /ledger (called when the button is clicked)
 app.post('/ledger',function(request,response){
+	console.log("POST /ledger")
 	var test=request.body;
 	collection.insert({"id":1,"name":test['msg']});
 	console.log("Inserted!");
