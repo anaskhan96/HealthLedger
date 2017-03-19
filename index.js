@@ -27,7 +27,7 @@ app.get('/ledger',function(request,response){
 	response.render("ledger_home.ejs");
 });
 
-// POST /ledger (called when the button is clicked
+// POST /ledger (called when the button is clicked)
 app.post('/ledger',function(request,response){
 	var test=request.body;
 	collection.insert({"id":1,"name":test['msg']});
