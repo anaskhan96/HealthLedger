@@ -48,6 +48,11 @@ app.post('/ledger',function(request,response){
   	});
 });
 
+app.get('/ledger/react-check',function(req,res){
+	console.log("GET /ledger/react-check");
+	res.end("Working...");
+});
+
 // Listening on 127.0.0.1:5000
 app.listen(app.get('port'),function(){
 	console.log("Node app is running on localhost:",app.get('port'));
