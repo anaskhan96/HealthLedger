@@ -48,9 +48,11 @@ app.post('/ledger',function(request,response){
   	});
 });
 
-app.get('/ledger/react-check',function(req,res){
-	console.log("GET /ledger/react-check");
-	res.end("Working...");
+/* Experimental check, THIS FUNCTION IS NOT TO BE CHANGED */
+app.post('/ledger/react-check',function(req,res){
+	console.log("POST /ledger/react-check");
+	var data = req.body;
+	res.send(data);
 });
 
 // Listening on 127.0.0.1:5000
