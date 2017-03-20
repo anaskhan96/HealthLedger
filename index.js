@@ -23,8 +23,8 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.set('views',__dirname+'/views'); // directory for all ejs files
 app.set('view engine','ejs'); // using .ejs instead of .html
 
-app.get('/login',function(req,res){
-	console.log("GET /login")
+app.get('/ledger/login',function(req,res){
+	console.log("GET /ledger/login")
 	res.render("login.ejs")
 })
 // GET /ledger
