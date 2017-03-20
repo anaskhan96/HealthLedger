@@ -58,7 +58,7 @@ app.get('/ledger/react-check',function(req,res){
 app.post('/ledger/react-check',function(req,res){
 	console.log("POST /ledger/react-check");
 	var data = req.body;
-	res.send(data);
+	res.send({"heyy":"hdjhf"});
 });
 
 // Listening on 127.0.0.1:5000
