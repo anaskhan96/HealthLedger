@@ -26,7 +26,8 @@ app.set('view engine','ejs'); // using .ejs instead of .html
 app.get('/ledger/login',function(req,res){
 	console.log("GET /ledger/login")
 	res.render("login.ejs")
-})
+});
+
 // GET /ledger
 app.get('/ledger',function(request,response){
 	console.log("GET /ledger")
@@ -49,6 +50,11 @@ app.post('/ledger',function(request,response){
 });
 
 /* Experimental check, THIS FUNCTION IS NOT TO BE CHANGED */
+app.get('/ledger/react-check',function(req,res){
+	console.log("GET /ledger/react-check");
+	res.end("Checking stuff");
+});
+
 app.post('/ledger/react-check',function(req,res){
 	console.log("POST /ledger/react-check");
 	var data = req.body;
