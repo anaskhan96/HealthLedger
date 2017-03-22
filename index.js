@@ -58,9 +58,12 @@ app.get('/ledger/react-check',function(req,res){
 });
 
 app.post('/ledger/react-check',function(req,res){
+	console.log('POST /ledger/react-native');
 	var data=req.body
+	console.log('Attempting to connect...');
 	client.on('connect',function(){
 		client.subscribe('mpca');
+		console.log('Publishing...');
 		client.publish('mpca','the random message');	
 	});
 	res.send(data);
