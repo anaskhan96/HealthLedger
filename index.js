@@ -54,13 +54,15 @@ app.post('/ledger',function(request,response){
 /* MPCA PART (MQTT) */
 app.get('/ledger/react-check',function(req,res){
 	console.log("GET /ledger/react-check");
-	res.end("Checking stuff");
+	console.log('Attempting to connect...');
+	res.end("Checking stuff..")
 });
 
 app.post('/ledger/react-check',function(req,res){
 	console.log('POST /ledger/react-native');
 	var data=req.body
 	console.log('Attempting to connect...');
+	var client=mqtt.connect('mqtt://broker.hivemq.com');
 	client.on('connect',function(){
 		client.subscribe('mpca');
 		console.log('Publishing...');
