@@ -1,19 +1,19 @@
 var express = require('express');
 var app = express();
 var bodyParser=require('body-parser'); // required for AJAX POST
-//var mongodb = require('mongodb'); // mongodb package for node
-//var mc = mongodb.MongoClient;
-//var url='mongodb://localhost:27017/test';
+var mongodb = require('mongodb'); // mongodb package for node
+var mc = mongodb.MongoClient;
+var url='mongodb://localhost:27017/test';
 var mqtt=require('mqtt');
 var client=mqtt.connect('mqtt://broker.hivemq.com');
 
 // connecting to the mongo db server
-/*mc.connect(url,function(err,db){
+mc.connect(url,function(err,db){
 	if(!err){
 		console.log("Connected!");
 	}
 	collection=db.collection('sample');
-});*/
+});
 
 app.set('port',5000);
 
