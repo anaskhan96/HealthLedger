@@ -61,7 +61,7 @@ app.post('/ledger/react-check',function(req,res){
 	var data=req.body
 	client.on('connect',function(){
 		client.subscribe('mpca');
-		client.publish('mpca',data);	
+		client.publish('mpca','the random message');	
 	});
 	res.send(data);
 });
