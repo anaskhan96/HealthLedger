@@ -66,7 +66,7 @@ app.post('/ledger/react-check',function(req,res){
 	client.on('connect',function(){
 		client.subscribe('mpca');
 		console.log('Publishing...');
-		client.publish('mpca',data['led']);	
+		client.publish('mpca','ANVITHSHETTY');	
 	});
 	res.send(data);
 });
