@@ -15,6 +15,14 @@ mc.connect(url,function(err,db){
 	collection=db.collection('sample');
 });
 
+var client=mqtt.connect('mqtt://anask.xyz');
+
+	client.on('connect',function(){
+		client.subscribe('mpca');
+		console.log('Publishing...');
+		client.publish('mpca','Server Connected. ');	
+	});
+
 app.set('port',5000);
 
 app.use(express.static(__dirname+'/public')); // directory for all css and js
@@ -62,12 +70,7 @@ app.post('/ledger/react-check',function(req,res){
 	console.log('POST /ledger/react-native');
 	var data=req.body
 	console.log('Attempting to connect...');
-	var client=mqtt.connect('mqtt://broker.hivemq.com');
-	client.on('connect',function(){
-		client.subscribe('mpca');
-		console.log('Publishing...');
-		client.publish('mpca','ANVITHSHETTY');	
-	});
+	client.publish('mpca','L1');
 	res.send(data);
 });
 
