@@ -51,7 +51,7 @@ app.post('/ledger',function(request,response){
   	});
 });
 
-/* MPCA PART */
+/* MPCA PART (MQTT) */
 app.get('/ledger/react-check',function(req,res){
 	console.log("GET /ledger/react-check");
 	res.end("Checking stuff");
