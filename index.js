@@ -5,7 +5,6 @@ var mongodb = require('mongodb'); // mongodb package for node
 var mc = mongodb.MongoClient;
 var url='mongodb://localhost:27017/test';
 var mqtt=require('mqtt');
-var client=mqtt.connect('mqtt://broker.hivemq.com');
 
 // connecting to the mongo db server
 mc.connect(url,function(err,db){
@@ -15,13 +14,13 @@ mc.connect(url,function(err,db){
 	collection=db.collection('sample');
 });
 
-var client=mqtt.connect('mqtt://anask.xyz');
+let client=mqtt.connect('mqtt://anask.xyz');
 
-	client.on('connect',function(){
-		client.subscribe('mpca');
-		console.log('Publishing...');
-		client.publish('mpca','Server Connected. ');	
-	});
+client.on('connect',function(){
+	client.subscribe('mpca');
+	console.log('Publishing...');
+	client.publish('mpca','Server Connected. ');	
+});
 
 app.set('port',5000);
 
