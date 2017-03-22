@@ -1,17 +1,19 @@
 var express = require('express');
 var app = express();
 var bodyParser=require('body-parser'); // required for AJAX POST
-var mongodb = require('mongodb'); // mongodb package for node
-var mc = mongodb.MongoClient;
-var url='mongodb://localhost:27017/test';
+//var mongodb = require('mongodb'); // mongodb package for node
+//var mc = mongodb.MongoClient;
+//var url='mongodb://localhost:27017/test';
+var mqtt=require('mqtt');
+var client=mqtt.connect('mqtt://broker.hivemq.com');
 
 // connecting to the mongo db server
-mc.connect(url,function(err,db){
+/*mc.connect(url,function(err,db){
 	if(!err){
 		console.log("Connected!");
 	}
 	collection=db.collection('sample');
-});
+});*/
 
 app.set('port',5000);
 
@@ -49,16 +51,19 @@ app.post('/ledger',function(request,response){
   	});
 });
 
-/* Experimental check, THIS FUNCTION IS NOT TO BE CHANGED */
+/* MPCA PART */
 app.get('/ledger/react-check',function(req,res){
 	console.log("GET /ledger/react-check");
 	res.end("Checking stuff");
 });
 
 app.post('/ledger/react-check',function(req,res){
-	console.log("POST /ledger/react-check");
-	var data = req.body;
-	res.send({"heyy":"hdjhf"});
+	var data=req.body
+	client.on('connect',function(){
+		client.subscribe('mpca');
+		client.publish('mpca',data);	
+	});
+	res.send(data);
 });
 
 // Listening on 127.0.0.1:5000
