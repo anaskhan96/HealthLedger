@@ -2,12 +2,12 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser'); // required for AJAX POST
 var mongodb = require('mongodb'); // mongodb package for node
-var mc = mongodb.MongoClient;
+var mongoClient = mongodb.MongoClient;
 var url = 'mongodb://localhost:27017/test';
 var mqtt = require('mqtt');
 
 // connecting to the mongo db server
-mc.connect(url, function (err, db) {
+mongoClient.connect(url, function (err, db) {
 	if (!err) {
 		console.log("Connected!");
 	}
@@ -61,14 +61,12 @@ app.post('/ledger', function (request, response) {
 /* MPCA PART (MQTT) */
 app.get('/ledger/react-check', function (req, res) {
 	console.log("GET /ledger/react-check");
-	console.log('Attempting to connect...');
 	res.end("Checking stuff..")
 });
 
 app.post('/ledger/react-check', function (req, res) {
 	console.log('POST /ledger/react-native');
 	var data = req.body
-	console.log('Attempting to connect...');
 	client.publish('mpca', 'L1');
 	res.send(data);
 });
