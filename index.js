@@ -61,8 +61,9 @@ app.post('/ledger', function (request, response) {
 /* MPCA PART (MQTT) */
 app.get('/ledger/react-check', function (req, res) {
 	var now = new Date();
-	now.setHours = now.getHours()+5;
-	now.setMinutes = now.getMinutes()+30;
+	// To change to GMT +0530 for India
+	now.setHours(now.getHours()+5);
+	now.setMinutes(now.getMinutes()+30);
 	console.log("GET /ledger/react-check");
 	res.end(now.toString());
 });
