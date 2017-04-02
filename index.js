@@ -60,8 +60,9 @@ app.post('/ledger', function (request, response) {
 
 /* MPCA PART (MQTT) */
 app.get('/ledger/react-check', function (req, res) {
+	var now = new Date();
 	console.log("GET /ledger/react-check");
-	res.end("Checking stuff..")
+	res.end(now);
 });
 
 app.post('/ledger/react-check', function (req, res) {
