@@ -62,7 +62,7 @@ app.post('/ledger', function (request, response) {
 app.get('/ledger/react-check', function (req, res) {
 	var now = new Date();
 	console.log("GET /ledger/react-check");
-	res.end(now);
+	res.end(now.toString());
 });
 
 app.post('/ledger/react-check', function (req, res) {
