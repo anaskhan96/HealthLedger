@@ -66,8 +66,12 @@ app.get('/ledger/react-check', function (req, res) {
 
 app.post('/ledger/react-check', function (req, res) {
 	console.log('POST /ledger/react-native');
-	var data = req.body
-	client.publish('mpca', 'L1');
+	var data = req.body;
+	var msgToSend = "";
+	var led = data.led.slice(4);
+	var time = data.time;
+	msgToSend = "l"+led+"1";
+	client.publish('mpca', msgToSend);
 	res.send(data);
 });
 
