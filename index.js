@@ -77,7 +77,8 @@ app.post('/ledger/react-check', function (req, res) {
 	now.setHours(now.getHours()+5);
 	now.setMinutes(now.getMinutes()+30);
 	var j = schedule.scheduleJob({minute: now.getMinutes()+3}, function(){
-		client.publish('mpca',msgToSend);
+		client.publish('mpca', msgToSend);
+		console.log("Published at the scheduled time");
 	});
 	var confirmation = "Message Sent to MQTT";
 	res.send({"confirm":confirmation});
