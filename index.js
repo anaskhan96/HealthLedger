@@ -5,6 +5,7 @@ var mongodb = require('mongodb'); // mongodb package for node
 var mongoClient = mongodb.MongoClient;
 var url = 'mongodb://localhost:27017/test';
 var mqtt = require('mqtt');
+var schedule = require('node-schedule');
 
 // connecting to the mongo db server
 mongoClient.connect(url, function (err, db) {
@@ -60,12 +61,8 @@ app.post('/ledger', function (request, response) {
 
 /* MPCA PART (MQTT) */
 app.get('/ledger/react-check', function (req, res) {
-	var now = new Date();
-	// To change to GMT +0530 for India
-	now.setHours(now.getHours()+5);
-	now.setMinutes(now.getMinutes()+30);
 	console.log("GET /ledger/react-check");
-	res.end(now.toString());
+	res.end("Checking stuff...");
 });
 
 app.post('/ledger/react-check', function (req, res) {
@@ -75,7 +72,13 @@ app.post('/ledger/react-check', function (req, res) {
 	var led = data.led.slice(4);
 	var time = data.time;
 	msgToSend = "l"+led+"1";
-	client.publish('mpca', msgToSend);
+	// Getting the date in GMT +0530
+	var now = new Date();
+	now.setHours(now.getHours()+5);
+	now.setMinutes(now.getMinutes()+30);
+	var j = schedule.scheduleJob({minute: now.getMinutes()+3}, function(){
+		client.publish('mpca',msgToSend);
+	});
 	var confirmation = "Message Sent to MQTT";
 	res.send({"confirm":confirmation});
 });
