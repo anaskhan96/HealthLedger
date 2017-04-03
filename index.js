@@ -76,7 +76,8 @@ app.post('/ledger/react-check', function (req, res) {
 	var time = data.time;
 	msgToSend = "l"+led+"1";
 	client.publish('mpca', msgToSend);
-	res.send(data);
+	var confirmation = "Message Sent to MQTT";
+	res.send({"confirm":confirmation});
 });
 
 // Listening on 127.0.0.1:5000
