@@ -76,7 +76,8 @@ app.post('/ledger/react-check', function (req, res) {
 	var now = new Date();
 	now.setHours(now.getHours()+5);
 	now.setMinutes(now.getMinutes()+30);
-	var j = schedule.scheduleJob({minute: now.getMinutes()+3}, function(){
+	var j = schedule.scheduleJob({second: 50}, function(){
+		console.log("Scheduler called");
 		client.publish('mpca', msgToSend);
 		console.log("Published at the scheduled time");
 	});
