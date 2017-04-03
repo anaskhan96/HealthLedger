@@ -71,12 +71,11 @@ app.post('/ledger/react-check', function (req, res) {
 	var msgToSend = "";
 	var led = data.led.slice(4);
 	var time = data.time;
+	var hour = parseInt(time.slice(0,1));
+	if(time.slice(2) == "PM")
+		hour = hour + 12;
 	msgToSend = "l"+led+"1";
-	// Getting the date in GMT +0530
-	var now = new Date();
-	now.setHours(now.getHours()+5);
-	now.setMinutes(now.getMinutes()+30);
-	var j = schedule.scheduleJob({second: 50}, function(){
+	var j = schedule.scheduleJob({minute: 48}, function(){
 		console.log("Scheduler called");
 		client.publish('mpca', msgToSend);
 		console.log("Published at the scheduled time");
