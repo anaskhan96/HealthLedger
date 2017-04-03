@@ -75,7 +75,8 @@ app.post('/ledger/react-check', function (req, res) {
 	if(time.slice(2) == "PM")
 		hour = hour + 12;
 	msgToSend = "l"+led+"1";
-	var j = schedule.scheduleJob({minute: 48}, function(){
+	// Scheduling according to GMT +0000
+	var j = schedule.scheduleJob({hour: hour - 6, minute: 30}, function(){
 		console.log("Scheduler called");
 		client.publish('mpca', msgToSend);
 		console.log("Published at the scheduled time");
