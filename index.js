@@ -40,7 +40,7 @@ app.get('/ledger/login', function (req, res) {
 // GET /ledger
 app.get('/ledger', function (request, response) {
 	console.log("GET /ledger")
-	response.render("ledger_home.ejs");
+	response.render("profile.ejs");
 });
 
 // POST /ledger (called when the button is clicked)
