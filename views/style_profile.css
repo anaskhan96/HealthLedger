@@ -1,0 +1,141 @@
+h3{
+	text-align: center;
+}
+
+.jumbo {
+		width: 100%;
+		height: 400px;
+		margin-top: 0;
+		background: url("https://media.giphy.com/media/UjdQvOJHgxMPe/giphy.gif") center center no-repeat;
+		background-size: cover;
+	}
+
+.icons {
+		display: flex;
+		justify-content: space-between;
+    }
+		
+		.big-icon {
+			width: 180px;
+			height: 180px;
+			background: url(https://img.clipartfest.com/40002f0dbbff97d3343f47f24d243e90_man-silhouette-clip-art-free-clipart-man-silhouette-png_300-300.jpeg) center top;
+			background-size: 140%;
+			border-radius: 50%;
+			border: 2px solid white;
+			margin-top: -90px;
+			margin-left: 43%;
+			
+		}
+	
+	.details {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin-bottom: 50px;
+    }
+		.details>h3 {
+			color: #212121;
+			font-size: 28px;
+			margin-top: 15px;
+		}
+		
+		p {
+			color: #727272;
+			margin-top: 0px;
+		}
+	
+	
+	.bio {
+		margin-bottom: 80px;
+    }		
+	
+    h6 {
+				color: #212121;
+				font-size: 18px;
+			}	 
+			
+.content>p {
+		    color: #727272;
+			}
+	
+	
+	.posts {
+		margin-bottom: 50px;
+    }
+		
+		.posts>.row {
+			margin-bottom: 0px;
+        }
+				
+		.card {
+				position: relative;
+            }
+		.card-action {
+						display: flex;
+						justify-content: space-between;
+						align-items: center;
+            }
+						.tags {
+							display: flex;
+                        }
+							.chip:first-child {
+								margin-right: 5px;
+							}
+						
+							&:hover {
+								color: #f9a825;
+							}
+	
+	.blogs {
+		margin-bottom: 80px;
+    }
+		
+	
+	
+	.stretch {
+		height: 500px;
+	}
+	
+	.fab {
+		transition: all 120ms ease-in-out;
+		bottom: 20px !important;
+    }
+		.btn-large >i{
+				font-size: 40px;
+		}
+		
+		.orange>i {
+				font-size: 20px;
+
+		}
+	
+
+@media screen and (max-width: 600px) {
+	
+	main {
+		padding-top: 40px;	
+	}
+	
+	.jumbo {
+		height: 200px !important;
+	}
+	
+	.icons {
+		justify-content: center !important;
+	}
+	
+	.rate {
+		display: none !important;
+	}
+	
+	.add {
+		display: none !important;
+	}
+}
+
+@media screen and (min-width: 600px) {
+	
+	.fab {
+		display: none;
+	}
+}
