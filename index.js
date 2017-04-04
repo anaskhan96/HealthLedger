@@ -19,7 +19,6 @@ let client = mqtt.connect('mqtt://anask.xyz');
 
 client.on('connect', function () {
 	client.subscribe('mpca');
-	console.log('Publishing...');
 	client.publish('mpca', 'Server Connected. ');
 });
 
@@ -35,7 +34,7 @@ app.set('view engine', 'ejs'); // using .ejs instead of .html
 
 app.get('/ledger/login', function (req, res) {
 	console.log("GET /ledger/login")
-	res.render("login.ejs")
+	res.render("index.ejs")
 });
 
 // GET /ledger
