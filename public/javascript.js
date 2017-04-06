@@ -8,6 +8,7 @@ function cambiar_login() {
 	setTimeout(function () {
 		document.querySelector('.cont_form_sign_up').style.display = "none";
 	}, 200);
+	document.getElementById("login").onclick = redirect;
 }
 
 function cambiar_sign_up(at) {
@@ -33,6 +34,10 @@ function ocultar_login_sign_up() {
 		document.querySelector('.cont_form_sign_up').style.display = "none";
 		document.querySelector('.cont_form_login').style.display = "none";
 	}, 500);
+}
+
+function redirect(){
+	alert("heyy");
 }
 
 (function ($) {
