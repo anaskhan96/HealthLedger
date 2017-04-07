@@ -207,4 +207,74 @@ function readMore(event) {
 		e.innerHTML = ""; //Coverage from backend
 		d.appendChild(e);
 	}
+	else if( !d.id.localeCompare("dmedhist")) {
+		var d = document.getElementById("medhistform")
+		var e = document.createElement("label");
+		e.innerHTML = "Patient ID";
+		d.appendChild(e);
+		
+		e = document.createElement("textarea");
+		e.name = "patid";
+		d.appendChild(e);
+
+		e = document.createElement("label");
+		e.innerHTML = "Receipt Number";
+		d.appendChild(e);
+
+		e = document.createElement("textarea");
+		e.name = "rid";
+		d.appendChild(e);
+	}
+	else if( !d.id.localeCompare("drep")) {
+		var d = document.getElementById("drepform");
+		var e = document.createElement("label");
+		e.innerHTML = "Patient ID";
+		d.appendChild(e);
+		
+		e = document.createElement("textarea");
+		e.name = "patid"
+		d.appendChild(e);
+
+		e = document.createElement("label");
+		e.innerHTML = "Link";
+		d.appendChild(e);
+
+		e = document.createElement("textarea");
+		e.name = "link";
+		d.appendChild(e);
+	}
+	else if( !d.id.localeCompare("treatdet")) {
+		d = d.querySelectorAll(".card-content.white-text")[0];
+		var e = document.createElement("label");
+		e.innerHTML = "Patient ID";
+		d.appendChild(e);
+		
+		e = document.createElement("p");
+		e.innerHTML = ""; //patient ID from backend
+		d.appendChild(e);
+
+		e = document.createElement("label");
+		e.innerHTML = "Disease";
+		d.appendChild(e);
+
+		e = document.createElement("p");
+		e.innerHTML = ""; //Treat_for from backend
+		d.appendChild(e);
+
+		e = document.createElement("label");
+		e.innerHTML = "Prescribed";
+		d.appendChild(e);
+
+		e = document.createElement("p");
+		e.innerHTML = ""; //Prescription from backend
+		d.appendChild(e);
+
+		e = document.createElement("label");
+		e.innerHTML = "Prescribed By ";
+		d.appendChild(e);
+
+		e = document.createElement("p");
+		e.innerHTML = ""; //Doctor_id from backend
+		d.appendChild(e);
+	}
 }
