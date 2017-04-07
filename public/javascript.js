@@ -302,38 +302,38 @@ function readMore(event) {
 		e.name = "link";
 		d.appendChild(e);
 	}
-	else if( !d.id.localeCompare("treatdet")) {
-		d = d.querySelectorAll(".card-content.white-text")[0];
+	else if( !d.id.localeCompare("dinsur")) {
+		var d = document.getElementById("dinsurform");
 		var e = document.createElement("label");
 		e.innerHTML = "Patient ID";
 		d.appendChild(e);
 		
-		e = document.createElement("p");
-		e.innerHTML = ""; //patient ID from backend
+		e = document.createElement("textarea");
+		e.name = "patid"
 		d.appendChild(e);
 
 		e = document.createElement("label");
-		e.innerHTML = "Disease";
+		e.innerHTML = "Policy ID";
 		d.appendChild(e);
 
-		e = document.createElement("p");
-		e.innerHTML = ""; //Treat_for from backend
-		d.appendChild(e);
-
-		e = document.createElement("label");
-		e.innerHTML = "Prescribed";
-		d.appendChild(e);
-
-		e = document.createElement("p");
-		e.innerHTML = ""; //Prescription from backend
+		e = document.createElement("textarea");
+		e.name = "polid";
 		d.appendChild(e);
 
 		e = document.createElement("label");
-		e.innerHTML = "Prescribed By ";
+		e.innerHTML = "Premium";
 		d.appendChild(e);
 
-		e = document.createElement("p");
-		e.innerHTML = ""; //Doctor_id from backend
+		e = document.createElement("textarea");
+		e.name = "premium";
+		d.appendChild(e);
+
+		e = document.createElement("label");
+		e.innerHTML = "Coverage";
+		d.appendChild(e);
+
+		e = document.createElement("textarea");
+		e.name = "cov";
 		d.appendChild(e);
 	}
 }
