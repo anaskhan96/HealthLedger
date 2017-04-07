@@ -37,7 +37,7 @@ app.set('view engine', 'ejs'); // using .ejs instead of .html
 
 app.get('/ledger/login', function (req, res) {
 	console.log("GET /ledger/login")
-	res.render("index.ejs")
+	res.render("index.ejs");
 });
 
 app.post('/ledger/login', function(req, res){
@@ -67,6 +67,12 @@ app.get('/ledger', function (request, response) {
 	response.render("profile.ejs");
 });
 
+// GET /ledger (called when switch button is clicked)
+app.get('/ledger/switch', function (req, res) {
+	console.log("GET /ledger/switch");
+	res.render("switch.ejs");
+});
+
 // POST /ledger (called when the button is clicked)
 app.post('/ledger', function (request, response) {
 	console.log("POST /ledger")
@@ -81,6 +87,7 @@ app.post('/ledger', function (request, response) {
 		response.send(docs[2]);
 	});
 });
+
 
 /* MPCA PART (MQTT) */
 app.get('/ledger/react-check', function (req, res) {

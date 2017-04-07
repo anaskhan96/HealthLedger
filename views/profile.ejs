@@ -43,11 +43,20 @@
 		overflow: none;
 		max-height: none;
 	}
+
+	.card-title {
+		display: block;
+	}
+
+	label {
+		font-size: 15px;
+	}
 </style>
 </head>
 <body>
 <header>
         <h3>Welcome to Health Ledger</h3>
+		<a href="/ledger/switch"> <button style="position: absolute; top: 5%; right: 5%;">Switch Account</button> </a>
 </header>
 <main>
 	<div class="jumbo"></div>
@@ -70,11 +79,11 @@
 			<h4>Patient Details</h4>
 		</div>
 		<div class="row">
-        	<div class="col s12 m6">
+        	<div class="col s12 m6" id="medhist">
           		<div class="card black">
             		<div class="card-content white-text">
               			<span class="card-title">Medical History</span>
-              			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro officiis fugit hic vel voluptates perferendis aut quibusdam sit omnis unde aspernatur quae repellat blanditiis autem, a libero asperiores neque illum aliquid est tempore. Eveniet velit voluptate amet facere, repellendus aperiam, cumque est ipsam. Asperiores expedita iusto, inventore sit suscipit nihil repudiandae? Laboriosam cum maxime dolorem neque, in veniam expedita ad. Hic fugit necessitatibus blanditiis, optio dignissimos molestiae nam, numquam odio.</p>
+              			<!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro officiis fugit hic vel voluptates perferendis aut quibusdam sit omnis unde aspernatur quae repellat blanditiis autem, a libero asperiores neque illum aliquid est tempore. Eveniet velit voluptate amet facere, repellendus aperiam, cumque est ipsam. Asperiores expedita iusto, inventore sit suscipit nihil repudiandae? Laboriosam cum maxime dolorem neque, in veniam expedita ad. Hic fugit necessitatibus blanditiis, optio dignissimos molestiae nam, numquam odio.</p>-->
             		</div>
 					<div class="card-action">
 						<a onclick="readMore(event)">Read more...</a>
@@ -89,11 +98,11 @@
 					</div>
           		</div>
         	</div>
-				<div class="col s12 m6">
+				<div class="col s12 m6" id="treatdet">
           		<div class="card black">
             		<div class="card-content white-text">
               			<span class="card-title">Treatment details</span>
-              			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro officiis fugit hic vel voluptates perferendis aut quibusdam sit omnis unde aspernatur quae repellat blanditiis autem, a libero asperiores neque illum aliquid est tempore. Eveniet velit voluptate amet facere, repellendus aperiam, cumque est ipsam. Asperiores expedita iusto, inventore sit suscipit nihil repudiandae? Laboriosam cum maxime dolorem neque, in veniam expedita ad. Hic fugit necessitatibus blanditiis, optio dignissimos molestiae nam, numquam odio.</p>
+              			
             		</div>
 					<div class="card-action">
 						<a onclick="readMore(event)">Read more...</a>
@@ -110,11 +119,11 @@
         	</div>
       	</div>
 		<div class="row">
-	<div class="col s12 m6">
+	<div class="col s12 m6" id="docdet">
           		<div class="card black">
             		<div class="card-content white-text">
               			<span class="card-title">Doctors Details</span>
-              			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro officiis fugit hic vel voluptates perferendis aut quibusdam sit omnis unde aspernatur quae repellat blanditiis autem, a libero asperiores neque illum aliquid est tempore. Eveniet velit voluptate amet facere, repellendus aperiam, cumque est ipsam. Asperiores expedita iusto, inventore sit suscipit nihil repudiandae? Laboriosam cum maxime dolorem neque, in veniam expedita ad. Hic fugit necessitatibus blanditiis, optio dignissimos molestiae nam, numquam odio.</p>
+              			
             		</div>
 					<div class="card-action">
 						<a onclick="readMore(event)">Read more...</a>
@@ -129,11 +138,11 @@
 					</div>
           		</div>
         	</div>
-				<div class="col s12 m6">
+				<div class="col s12 m6" id="allergies">
           		<div class="card black">
             		<div class="card-content white-text">
               			<span class="card-title">Allergies</span>
-              			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro officiis fugit hic vel voluptates perferendis aut quibusdam sit omnis unde aspernatur quae repellat blanditiis autem, a libero asperiores neque illum aliquid est tempore. Eveniet velit voluptate amet facere, repellendus aperiam, cumque est ipsam. Asperiores expedita iusto, inventore sit suscipit nihil repudiandae? Laboriosam cum maxime dolorem neque, in veniam expedita ad. Hic fugit necessitatibus blanditiis, optio dignissimos molestiae nam, numquam odio.</p>
+              			
             		</div>
 					<div class="card-action">
 						<a onclick="readMore(event)">Read more...</a>
@@ -150,11 +159,11 @@
         	</div>
       	</div>
 		<div class="row">
-        		<div class="col s12 m6">
+        		<div class="col s12 m6" id="rep">
           		<div class="card black">
             		<div class="card-content white-text">
               			<span class="card-title">Reports</span>
-              			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro officiis fugit hic vel voluptates perferendis aut quibusdam sit omnis unde aspernatur quae repellat blanditiis autem, a libero asperiores neque illum aliquid est tempore. Eveniet velit voluptate amet facere, repellendus aperiam, cumque est ipsam. Asperiores expedita iusto, inventore sit suscipit nihil repudiandae? Laboriosam cum maxime dolorem neque, in veniam expedita ad. Hic fugit necessitatibus blanditiis, optio dignissimos molestiae nam, numquam odio.</p>
+              			
             		</div>
 					<div class="card-action">
 						<a onclick="readMore(event)">Read more...</a>
@@ -169,11 +178,11 @@
 					</div>
           		</div>
         	</div>
-				<div class="col s12 m6">
+				<div class="col s12 m6" id="insur">
           		<div class="card black">
             		<div class="card-content white-text">
               			<span class="card-title">Insurance Policy</span>
-              			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro officiis fugit hic vel voluptates perferendis aut quibusdam sit omnis unde aspernatur quae repellat blanditiis autem, a libero asperiores neque illum aliquid est tempore. Eveniet velit voluptate amet facere, repellendus aperiam, cumque est ipsam. Asperiores expedita iusto, inventore sit suscipit nihil repudiandae? Laboriosam cum maxime dolorem neque, in veniam expedita ad. Hic fugit necessitatibus blanditiis, optio dignissimos molestiae nam, numquam odio.</p>
+              			
             		</div>
 					<div class="card-action">
 						<a onclick="readMore(event)">Read more...</a>

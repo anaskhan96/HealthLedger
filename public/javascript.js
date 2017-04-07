@@ -63,6 +63,150 @@ function readMore(event) {
 	document.body.appendChild(newdiv);
 
 	document.getElementById("encase").getElementsByTagName("a")[0].remove();
+
+	if( !d.id.localeCompare("medhist")) {
+		d = d.querySelectorAll(".card-content.white-text")[0];
+		var e = document.createElement("label");
+		e.innerHTML = "Patient ID";
+		d.appendChild(e);
+		
+		e = document.createElement("p");
+		e.innerHTML = ""; //patient ID from backend
+
+		d.appendChild(e);
+
+		e = document.createElement("label");
+		e.innerHTML = "Diseases";
+		d.appendChild(e);
+
+		e = document.createElement("p");
+		e.innerHTML = ""
+
+		//for loop here append diseases from backend
+	}
+	else if( !d.id.localeCompare("treatdet")) {
+		d = d.querySelectorAll(".card-content.white-text")[0];
+		var e = document.createElement("label");
+		e.innerHTML = "Patient ID";
+		d.appendChild(e);
+		
+		e = document.createElement("p");
+		e.innerHTML = ""; //patient ID from backend
+		d.appendChild(e);
+
+		e = document.createElement("label");
+		e.innerHTML = "Disease";
+		d.appendChild(e);
+
+		e = document.createElement("p");
+		e.innerHTML = ""; //Treat_for from backend
+		d.appendChild(e);
+
+		e = document.createElement("label");
+		e.innerHTML = "Prescribed";
+		d.appendChild(e);
+
+		e = document.createElement("p");
+		e.innerHTML = ""; //Prescription from backend
+		d.appendChild(e);
+
+		e = document.createElement("label");
+		e.innerHTML = "Prescribed By ";
+		d.appendChild(e);
+
+		e = document.createElement("p");
+		e.innerHTML = ""; //Doctor_id from backend
+		d.appendChild(e);
+	}
+	else if( !d.id.localeCompare("docdet")) {
+		d = d.querySelectorAll(".card-content.white-text")[0];
+		var e = document.createElement("label");
+		e.innerHTML = "Patient ID";
+		d.appendChild(e);
+		
+		e = document.createElement("p");
+		e.innerHTML = ""; //patient ID _id from backend
+		d.appendChild(e);
+
+		e = document.createElement("label");
+		e.innerHTML = "Doctor ID";
+		d.appendChild(e);
+
+		e = document.createElement("p");
+		e.innerHTML = ""; //Doctor_id from backend
+		d.appendChild(e);
+	}
+	else if( !d.id.localeCompare("allergies")) {
+		d = d.querySelectorAll(".card-content.white-text")[0];
+		var e = document.createElement("label");
+		e.innerHTML = "Patient ID";
+		d.appendChild(e);
+		
+		e = document.createElement("p");
+		e.innerHTML = ""; //patient ID from backend
+		d.appendChild(e);
+
+		e = document.createElement("label");
+		e.innerHTML = "Allergic To";
+		d.appendChild(e);
+
+		e = document.createElement("p");
+		e.innerHTML = ""; 	//Allergy from backend
+		d.appendChild(e);
+	}
+	else if( !d.id.localeCompare("rep")) {
+		d = d.querySelectorAll(".card-content.white-text")[0];
+		var e = document.createElement("label");
+		e.innerHTML = "Patient ID";
+		d.appendChild(e);
+		
+		e = document.createElement("p");
+		e.innerHTML = ""; //patient ID from backend
+		d.appendChild(e);
+
+		e = document.createElement("label");
+		e.innerHTML = "Report Link : ";
+		d.appendChild(e);
+
+		e = document.createElement("a");
+		e.href = ""; //Link from backend
+		e.innerHTML = "Link"
+		d.appendChild(e);
+	}
+	else if( !d.id.localeCompare("insur")) {
+		d = d.querySelectorAll(".card-content.white-text")[0];
+		var e = document.createElement("label");
+		e.innerHTML = "Patient ID";
+		d.appendChild(e);
+		
+		e = document.createElement("p");
+		e.innerHTML = ""; //patient ID from backend
+		d.appendChild(e);
+
+		e = document.createElement("label");
+		e.innerHTML = "Insurance Policy";
+		d.appendChild(e);
+
+		e = document.createElement("p");
+		e.innerHTML = ""; //_id from backend
+		d.appendChild(e);
+
+		e = document.createElement("label");
+		e.innerHTML = "Premium";
+		d.appendChild(e);
+
+		e = document.createElement("p");
+		e.innerHTML = ""; //Premium from backend
+		d.appendChild(e);
+
+		e = document.createElement("label");
+		e.innerHTML = "Coverage";
+		d.appendChild(e);
+
+		e = document.createElement("p");
+		e.innerHTML = ""; //Coverage from backend
+		d.appendChild(e);
+	}
 }
 
 (function ($) {
