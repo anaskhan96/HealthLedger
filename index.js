@@ -5,16 +5,17 @@ var mongodb = require('mongodb'); // mongodb package for node
 var mongoClient = mongodb.MongoClient;
 //uncomment before commit
 //var url = 'mongodb://dbms:shaata420@localhost:27017/test';
-var url = 'mongodb://localhost:27017/test';
+var url = 'mongodb://localhost:27017/HealthLedger';
 var mqtt = require('mqtt');
 var schedule = require('node-schedule');
 
+let db = null;
 // connecting to the mongo db server
-mongoClient.connect(url, function (err, db) {
+mongoClient.connect(url, function (err, database) {
 	if (!err) {
 		console.log("Connected!");
 	}
-	collection = db.collection('sample');
+	db = database;
 });
 
 let client = mqtt.connect('mqtt://anask.xyz');
@@ -37,6 +38,27 @@ app.set('view engine', 'ejs'); // using .ejs instead of .html
 app.get('/ledger/login', function (req, res) {
 	console.log("GET /ledger/login")
 	res.render("index.ejs")
+});
+
+app.post('/ledger/login', function(req, res){
+	console.log('POST /ledger/login');
+	var ID = req.body.ID;
+	var type = "";
+	if(ID.length == 8)
+		type = "doctor";
+	else
+		type = "patient";
+	var cursor = null;
+	if(type == "doctor")
+		cursor = db.collection('doctors').find({"ID": ID});
+	else
+		cursor = db.collection('patients').find({"_id": ID});
+	cursor.each(function(err,doc){
+		if(doc != null){
+			console.log(doc.Name);
+			res.send({'type': type, 'ID': ID, 'name': doc.Name});
+		}
+	});
 });
 
 // GET /ledger

@@ -36,10 +36,6 @@ function ocultar_login_sign_up() {
 	}, 500);
 }
 
-function redirect(){
-	alert("heyy");
-}
-
 function readLess() {
 	location.reload();
 }
