@@ -56,7 +56,7 @@ app.post('/ledger/login', function(req, res){
 	cursor.each(function(err,doc){
 		if(doc != null){
 			console.log(doc.Name);
-			res.redirect('/ledger');
+			res.render('profile.ejs', {'type': type, 'ID': ID, 'name': doc.Name});
 		}
 	});
 });
@@ -64,7 +64,6 @@ app.post('/ledger/login', function(req, res){
 // GET /ledger
 app.get('/ledger', function (request, response) {
 	console.log("GET /ledger")
-	console.log(obj);
 	response.render("profile.ejs");
 });
 
