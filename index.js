@@ -45,11 +45,7 @@ app.get('/ledger/login', function (req, res) {
 app.post('/ledger/login', function(req, res){
 	console.log('POST /ledger/login');
 	var ID = req.body.ID;
-	var type = "";
-	if(ID.length == 8)
-		type = "doctor";
-	else
-		type = "patient";
+	var type = req.body.user;
 	var cursor = null;
 	if(type == "doctor")
 		cursor = db.collection('doctors').find({"ID": ID});
@@ -59,7 +55,10 @@ app.post('/ledger/login', function(req, res){
 		if(doc != null){
 			console.log(doc.Name);
 			obj =  {'type': type, 'ID': ID, 'name': doc.Name};
-			res.redirect('/ledger');
+			if(type == 'patient')
+				res.redirect('/ledger');
+			else
+				res.redirect('/ledger/doctor');
 		}
 	});
 });
@@ -71,6 +70,15 @@ app.get('/ledger', function (request, response) {
 		response.render("profile.ejs", obj);
 	else
 		response.send('not happening');
+});
+
+// GET /ledger/doctor
+app.get('/ledger/doctor', function(req,res){
+	console.log("GET /ledger/doctor");
+	if(obj != null)
+		res.render("doctor_profile.ejs", obj);
+	else
+		res.send('not happening');
 });
 
 // GET /ledger (called when switch button is clicked)
