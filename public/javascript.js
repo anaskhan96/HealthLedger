@@ -66,14 +66,13 @@ function readMore(event) {
 
 	if( !d.id.localeCompare("medhist")) {
 		d = d.querySelectorAll(".card-content.white-text")[0];
-		var e = document.createElement("label");
+		/*var e = document.createElement("label");
 		e.innerHTML = "Patient ID";
 		d.appendChild(e);
 		
 		e = document.createElement("p");
 		e.innerHTML = ""; //patient ID from backend
-
-		d.appendChild(e);
+		d.appendChild(e);*/
 
 		e = document.createElement("label");
 		e.innerHTML = "Diseases";
@@ -86,13 +85,13 @@ function readMore(event) {
 	}
 	else if( !d.id.localeCompare("treatdet")) {
 		d = d.querySelectorAll(".card-content.white-text")[0];
-		var e = document.createElement("label");
+		/*var e = document.createElement("label");
 		e.innerHTML = "Patient ID";
 		d.appendChild(e);
 		
 		e = document.createElement("p");
 		e.innerHTML = ""; //patient ID from backend
-		d.appendChild(e);
+		d.appendChild(e);*/
 
 		e = document.createElement("label");
 		e.innerHTML = "Disease";
@@ -120,15 +119,15 @@ function readMore(event) {
 	}
 	else if( !d.id.localeCompare("docdet")) {
 		d = d.querySelectorAll(".card-content.white-text")[0];
-		var e = document.createElement("label");
+		/*var e = document.createElement("label");
 		e.innerHTML = "Patient ID";
 		d.appendChild(e);
 		
 		e = document.createElement("p");
 		e.innerHTML = ""; //patient ID _id from backend
-		d.appendChild(e);
+		d.appendChild(e);*/
 
-		e = document.createElement("label");
+		e = document.createElement("label");	//from Treating collection
 		e.innerHTML = "Doctor ID";
 		d.appendChild(e);
 
@@ -138,13 +137,13 @@ function readMore(event) {
 	}
 	else if( !d.id.localeCompare("allergies")) {
 		d = d.querySelectorAll(".card-content.white-text")[0];
-		var e = document.createElement("label");
+		/*var e = document.createElement("label");
 		e.innerHTML = "Patient ID";
 		d.appendChild(e);
 		
 		e = document.createElement("p");
 		e.innerHTML = ""; //patient ID from backend
-		d.appendChild(e);
+		d.appendChild(e);*/
 
 		e = document.createElement("label");
 		e.innerHTML = "Allergic To";
@@ -156,13 +155,13 @@ function readMore(event) {
 	}
 	else if( !d.id.localeCompare("rep")) {
 		d = d.querySelectorAll(".card-content.white-text")[0];
-		var e = document.createElement("label");
+		/*var e = document.createElement("label");
 		e.innerHTML = "Patient ID";
 		d.appendChild(e);
 		
 		e = document.createElement("p");
 		e.innerHTML = ""; //patient ID from backend
-		d.appendChild(e);
+		d.appendChild(e);*/
 
 		e = document.createElement("label");
 		e.innerHTML = "Report Link : ";
@@ -175,13 +174,13 @@ function readMore(event) {
 	}
 	else if( !d.id.localeCompare("insur")) {
 		d = d.querySelectorAll(".card-content.white-text")[0];
-		var e = document.createElement("label");
+		/*var e = document.createElement("label");
 		e.innerHTML = "Patient ID";
 		d.appendChild(e);
 		
 		e = document.createElement("p");
 		e.innerHTML = ""; //patient ID from backend
-		d.appendChild(e);
+		d.appendChild(e);*/
 
 		e = document.createElement("label");
 		e.innerHTML = "Insurance Policy";
@@ -209,13 +208,13 @@ function readMore(event) {
 	}
 	else if( !d.id.localeCompare("dmedhist")) {
 		var d = document.getElementById("medhistform")
-		var e = document.createElement("label");
+		/*var e = document.createElement("label");
 		e.innerHTML = "Patient ID";
 		d.appendChild(e);
 		
 		e = document.createElement("textarea");
 		e.name = "patid";
-		d.appendChild(e);
+		d.appendChild(e);*/
 
 		e = document.createElement("label");
 		e.innerHTML = "Receipt Number";
@@ -286,13 +285,13 @@ function readMore(event) {
 
 	else if( !d.id.localeCompare("drep")) {
 		var d = document.getElementById("drepform");
-		var e = document.createElement("label");
+		/*var e = document.createElement("label");
 		e.innerHTML = "Patient ID";
 		d.appendChild(e);
 		
 		e = document.createElement("textarea");
 		e.name = "patid"
-		d.appendChild(e);
+		d.appendChild(e);*/
 
 		e = document.createElement("label");
 		e.innerHTML = "Link";
@@ -304,13 +303,13 @@ function readMore(event) {
 	}
 	else if( !d.id.localeCompare("dinsur")) {
 		var d = document.getElementById("dinsurform");
-		var e = document.createElement("label");
+		/*var e = document.createElement("label");
 		e.innerHTML = "Patient ID";
 		d.appendChild(e);
 		
 		e = document.createElement("textarea");
 		e.name = "patid"
-		d.appendChild(e);
+		d.appendChild(e);*/
 
 		e = document.createElement("label");
 		e.innerHTML = "Policy ID";
