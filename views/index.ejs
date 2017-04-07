@@ -10,7 +10,7 @@
 <link href="/style.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript">
-  function redirect(){
+  /*function redirect(){
 	  var ID = document.getElementById("ID").value;
 	  $.ajax({
 		  type: 'POST',
@@ -25,7 +25,7 @@
 			  console.log(error);
 		  }
 	  });
-  }
+  }*/
 </script>
 </head>
 <body>
@@ -66,15 +66,15 @@
     <div class="cont_img_back_">
        <img src="http://lowtestosteroneexpert.com/wp-content/uploads/2014/03/doctor-and-old-patient-1-300x199.jpg" alt="" />
        </div>
- <div class="cont_form_login">
+ <form method="post" action="/ledger/login"><div class="cont_form_login">
 <a href="#" onclick="ocultar_login_sign_up()" ><i class="material-icons">&#xE5C4;</i></a>
    <h2>LOGIN</h2>
  <input type="text" placeholder="Name" />
-<input id="ID" type="text" placeholder="ID" />
+<input id="ID" type="text" name="ID" placeholder="ID" />
 <input type="radio" name="user" value="doctor"  style="width:50px" checked>Doctor<br>
 <input type="radio" name="user" value="patient" style="width:50px">Patient<br>
 <button id="login" class="btn_login" onclick="redirect()">LOGIN</button>
-  </div>
+  </div></form>
   
    <div class="cont_form_sign_up">
 <a href="#" onclick="ocultar_login_sign_up()"><i class="material-icons">&#xE5C4;</i></a>
