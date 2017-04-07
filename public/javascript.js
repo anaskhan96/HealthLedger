@@ -40,6 +40,35 @@ function redirect(){
 	alert("heyy");
 }
 
+function readLess() {
+	location.reload();
+}
+
+function readMore(event) {
+	var newdiv = document.createElement("div");
+	newdiv.id = "encase";
+	
+	var parDiv = document.createElement("div");
+	parDiv.className = "container";
+	parDiv.appendChild(document.createElement("div"))
+	parDiv.firstChild.className = "row";
+	newdiv.appendChild(parDiv);
+
+	var d = event.target.parentNode.parentNode.parentNode;
+	d.className += " blown-up";
+	var ele = d.querySelectorAll(".card-content.white-text")[0];
+	ele.style = "max-height: none;";
+	parDiv.firstChild.appendChild(d);
+	ele = d.querySelectorAll(".card.black")[0];
+	ele.style = "z-index: 3;"
+
+	newdiv.addEventListener("click", readLess);
+	newdiv.appendChild(parDiv);
+	document.body.appendChild(newdiv);
+
+	document.getElementById("encase").getElementsByTagName("a")[0].remove();
+}
+
 (function ($) {
 	$(window).scroll(function () {
 

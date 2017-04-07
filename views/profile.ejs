@@ -12,6 +12,38 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://cdn.rawgit.com/anaskhan96/HealthLedger/master/public/style_profile.css" rel="stylesheet">
 <!-- <link href="style_profile.css" rel="stylesheet"> -->
+<style>
+	.card-content {
+		overflow: hidden;
+		max-height: 172px;
+	}
+
+	#encase {
+		z-index: 2;
+		background-color: rgba(255, 255, 255, 0.8); 
+		width: 100%; 
+		height: 100%; 
+		position: fixed;
+		top: 0;
+	}
+
+	.blown-up {
+		z-index: 3;
+		position: fixed;
+		top: 20%;
+		left: 20%;
+		right: 20%;
+		bottom: 20%;
+		width: inherit !important;
+		overflow: none !important;
+		max-height: none !important;
+	}
+
+	.blown-content {
+		overflow: none;
+		max-height: none;
+	}
+</style>
 </head>
 <body>
 <header>
@@ -28,7 +60,7 @@
 			<div class="title">
 				<h6>Personal Information</h6>
 			</div>
-			<div class="content">
+			<div>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro officiis fugit hic vel voluptates perferendis aut quibusdam sit omnis unde aspernatur quae repellat blanditiis autem, a libero asperiores neque illum aliquid est tempore. Eveniet velit voluptate amet facere, repellendus aperiam, cumque est ipsam. Asperiores expedita iusto, inventore sit suscipit nihil repudiandae? Laboriosam cum maxime dolorem neque, in veniam expedita ad. Hic fugit necessitatibus blanditiis, optio dignissimos molestiae nam, numquam odio.</p>
 			</div>
 			<hr />
@@ -42,10 +74,10 @@
           		<div class="card black">
             		<div class="card-content white-text">
               			<span class="card-title">Medical History</span>
-              			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem aliquid nobis nesciunt nulla laudantium aspernatur, delectus sed, minus ex perspiciatis...</p>
+              			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro officiis fugit hic vel voluptates perferendis aut quibusdam sit omnis unde aspernatur quae repellat blanditiis autem, a libero asperiores neque illum aliquid est tempore. Eveniet velit voluptate amet facere, repellendus aperiam, cumque est ipsam. Asperiores expedita iusto, inventore sit suscipit nihil repudiandae? Laboriosam cum maxime dolorem neque, in veniam expedita ad. Hic fugit necessitatibus blanditiis, optio dignissimos molestiae nam, numquam odio.</p>
             		</div>
 					<div class="card-action">
-						<a href="#">Read more...</a>
+						<a onclick="readMore(event)">Read more...</a>
 						<div class="tags">
 							<div class="chip">
 								Tag1
@@ -61,10 +93,10 @@
           		<div class="card black">
             		<div class="card-content white-text">
               			<span class="card-title">Treatment details</span>
-              			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem aliquid nobis nesciunt nulla laudantium aspernatur, delectus sed, minus ex perspiciatis...</p>
+              			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro officiis fugit hic vel voluptates perferendis aut quibusdam sit omnis unde aspernatur quae repellat blanditiis autem, a libero asperiores neque illum aliquid est tempore. Eveniet velit voluptate amet facere, repellendus aperiam, cumque est ipsam. Asperiores expedita iusto, inventore sit suscipit nihil repudiandae? Laboriosam cum maxime dolorem neque, in veniam expedita ad. Hic fugit necessitatibus blanditiis, optio dignissimos molestiae nam, numquam odio.</p>
             		</div>
 					<div class="card-action">
-						<a href="#">Read more...</a>
+						<a onclick="readMore(event)">Read more...</a>
 						<div class="tags">
 							<div class="chip">
 								Tag1
@@ -82,10 +114,10 @@
           		<div class="card black">
             		<div class="card-content white-text">
               			<span class="card-title">Doctors Details</span>
-              			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem aliquid nobis nesciunt nulla laudantium aspernatur, delectus sed, minus ex perspiciatis...</p>
+              			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro officiis fugit hic vel voluptates perferendis aut quibusdam sit omnis unde aspernatur quae repellat blanditiis autem, a libero asperiores neque illum aliquid est tempore. Eveniet velit voluptate amet facere, repellendus aperiam, cumque est ipsam. Asperiores expedita iusto, inventore sit suscipit nihil repudiandae? Laboriosam cum maxime dolorem neque, in veniam expedita ad. Hic fugit necessitatibus blanditiis, optio dignissimos molestiae nam, numquam odio.</p>
             		</div>
 					<div class="card-action">
-						<a href="#">Read more...</a>
+						<a onclick="readMore(event)">Read more...</a>
 						<div class="tags">
 							<div class="chip">
 								Tag1
@@ -101,10 +133,10 @@
           		<div class="card black">
             		<div class="card-content white-text">
               			<span class="card-title">Allergies</span>
-              			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem aliquid nobis nesciunt nulla laudantium aspernatur, delectus sed, minus ex perspiciatis...</p>
+              			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro officiis fugit hic vel voluptates perferendis aut quibusdam sit omnis unde aspernatur quae repellat blanditiis autem, a libero asperiores neque illum aliquid est tempore. Eveniet velit voluptate amet facere, repellendus aperiam, cumque est ipsam. Asperiores expedita iusto, inventore sit suscipit nihil repudiandae? Laboriosam cum maxime dolorem neque, in veniam expedita ad. Hic fugit necessitatibus blanditiis, optio dignissimos molestiae nam, numquam odio.</p>
             		</div>
 					<div class="card-action">
-						<a href="#">Read more...</a>
+						<a onclick="readMore(event)">Read more...</a>
 						<div class="tags">
 							<div class="chip">
 								Tag1
@@ -122,10 +154,10 @@
           		<div class="card black">
             		<div class="card-content white-text">
               			<span class="card-title">Reports</span>
-              			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem aliquid nobis nesciunt nulla laudantium aspernatur, delectus sed, minus ex perspiciatis...</p>
+              			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro officiis fugit hic vel voluptates perferendis aut quibusdam sit omnis unde aspernatur quae repellat blanditiis autem, a libero asperiores neque illum aliquid est tempore. Eveniet velit voluptate amet facere, repellendus aperiam, cumque est ipsam. Asperiores expedita iusto, inventore sit suscipit nihil repudiandae? Laboriosam cum maxime dolorem neque, in veniam expedita ad. Hic fugit necessitatibus blanditiis, optio dignissimos molestiae nam, numquam odio.</p>
             		</div>
 					<div class="card-action">
-						<a href="#">Read more...</a>
+						<a onclick="readMore(event)">Read more...</a>
 						<div class="tags">
 							<div class="chip">
 								Tag1
@@ -141,10 +173,10 @@
           		<div class="card black">
             		<div class="card-content white-text">
               			<span class="card-title">Insurance Policy</span>
-              			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem aliquid nobis nesciunt nulla laudantium aspernatur, delectus sed, minus ex perspiciatis...</p>
+              			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro officiis fugit hic vel voluptates perferendis aut quibusdam sit omnis unde aspernatur quae repellat blanditiis autem, a libero asperiores neque illum aliquid est tempore. Eveniet velit voluptate amet facere, repellendus aperiam, cumque est ipsam. Asperiores expedita iusto, inventore sit suscipit nihil repudiandae? Laboriosam cum maxime dolorem neque, in veniam expedita ad. Hic fugit necessitatibus blanditiis, optio dignissimos molestiae nam, numquam odio.</p>
             		</div>
 					<div class="card-action">
-						<a href="#">Read more...</a>
+						<a onclick="readMore(event)">Read more...</a>
 						<div class="tags">
 							<div class="chip">
 								Tag1

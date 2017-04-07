@@ -3,6 +3,8 @@ var app = express();
 var bodyParser = require('body-parser'); // required for AJAX POST
 var mongodb = require('mongodb'); // mongodb package for node
 var mongoClient = mongodb.MongoClient;
+//uncomment before commit
+//var url = 'mongodb://dbms:shaata420@localhost:27017/test';
 var url = 'mongodb://localhost:27017/test';
 var mqtt = require('mqtt');
 var schedule = require('node-schedule');
