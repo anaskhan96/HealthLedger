@@ -225,6 +225,65 @@ function readMore(event) {
 		e.name = "rid";
 		d.appendChild(e);
 	}
+
+		else if( !d.id.localeCompare("dtreating")) {
+		var d = document.getElementById("treatingform")
+		var e = document.createElement("label");
+		e.innerHTML = "Patient ID";
+		d.appendChild(e);
+		
+		e = document.createElement("textarea");
+		e.name = "patid";
+		d.appendChild(e);
+
+		e = document.createElement("label");
+		e.innerHTML = "Patient Name";
+		d.appendChild(e);
+
+		e = document.createElement("textarea");
+		e.name = "p_name";
+		d.appendChild(e);
+
+		e = document.createElement("label");
+		e.innerHTML = "Disease";
+		d.appendChild(e);
+
+		e = document.createElement("textarea");
+		e.name = "disease";
+		d.appendChild(e);
+	}
+
+	else if( !d.id.localeCompare("dtreatment")) {
+		var d = document.getElementById("treatmentform")
+		var e = document.createElement("label");
+		e.innerHTML = "Disease";
+		d.appendChild(e);
+		
+		e = document.createElement("textarea");
+		e.name = "disease_treat";
+		d.appendChild(e);
+
+		e = document.createElement("label");
+		e.innerHTML = "Prescription";
+		d.appendChild(e);
+
+		e = document.createElement("textarea");
+		e.name = "presc_name";
+		d.appendChild(e);
+	}
+
+		else if( !d.id.localeCompare("dallergy")) {
+		var d = document.getElementById("allergyform")
+		var e = document.createElement("label");
+		e.innerHTML = "Allergic To";
+		d.appendChild(e);
+		
+		e = document.createElement("textarea");
+		e.name = "allergic_to";
+		d.appendChild(e);
+	}
+
+
 	else if( !d.id.localeCompare("drep")) {
 		var d = document.getElementById("drepform");
 		var e = document.createElement("label");
