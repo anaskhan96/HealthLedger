@@ -10,6 +10,8 @@ var mqtt = require('mqtt');
 var schedule = require('node-schedule');
 
 let db = null;
+let obj = null;
+
 // connecting to the mongo db server
 mongoClient.connect(url, function (err, database) {
 	if (!err) {
@@ -56,7 +58,8 @@ app.post('/ledger/login', function(req, res){
 	cursor.each(function(err,doc){
 		if(doc != null){
 			console.log(doc.Name);
-			res.render('profile.ejs', {'type': type, 'ID': ID, 'name': doc.Name});
+			obj =  {'type': type, 'ID': ID, 'name': doc.Name};
+			res.redirect('/ledger');
 		}
 	});
 });
@@ -64,7 +67,10 @@ app.post('/ledger/login', function(req, res){
 // GET /ledger
 app.get('/ledger', function (request, response) {
 	console.log("GET /ledger")
-	response.render("profile.ejs");
+	if(obj != null)
+		response.render("profile.ejs", obj);
+	else
+		response.send('not happening');
 });
 
 // GET /ledger (called when switch button is clicked)
