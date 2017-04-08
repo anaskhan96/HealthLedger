@@ -57,48 +57,52 @@ app.post('/ledger/login', function (req, res) {
 	var cursorAllergies = null;
 	var cursorInsurancePolicy = null;
 	var cursorHospital = null;
-	if (type == "doctor")
+	if (type == "doctor") {
 		cursor = db.collection('doctors').find({ "ID": ID });
+		cursor.each(function (err, doc) {
+			if (doc != null) {
+				obj = { 'ID': ID, 'name': doc.Name, 'dob': doc.DOB }
+				res.redirect('/ledger/doctor');
+			}
+		});
+	}
 	else {
 		cursor = db.collection('patients').find({ "_id": ID });
 		cursorMedHist = db.collection('treatment').find({ "Patient_id": ID });
 		cursorAllergies = db.collection('allergen').find({ "_id": ID });
 		cursorInsurancePolicy = db.collection('insurance').find({ "Patient_id": ID });
 		cursorHospital = db.collection('hospitals').find({ "_id": ID.slice(0, 4) });
-	}
-	cursorMedHist.each(function (err, doc) {
-		if (doc != null) {
-			medHist = { 'disease': doc.Treat_for, 'prescribed': doc.Prescription, 'prescribedBy': doc.Doctor_id };
+		cursorMedHist.each(function (err, doc) {
+			if (doc != null) {
+				medHist = { 'disease': doc.Treat_for, 'prescribed': doc.Prescription, 'prescribedBy': doc.Doctor_id };
+			}
+		});
+		cursorAllergies.each(function (err, doc) {
+			if (doc != null) {
+				allergies = { 'allergy': doc.Allergy };
+			}
+		});
+		cursorHospital.each(function (err, doc) {
+			if (doc != null) {
+				hospitalDetails = { 'id': doc._id, 'location': doc.Location };
+			}
+		});
+		if (hospitalDetails == null) {
+			hospitalDetails = { 'id': 'H000', 'location': 'Florida' };
 		}
-	});
-	cursorAllergies.each(function (err, doc) {
-		if (doc != null) {
-			allergies = { 'allergy': doc.Allergy };
-		}
-	});
-	cursorHospital.each(function (err, doc) {
-		if (doc != null) {
-			hospitalDetails = { 'id': doc._id, 'location': doc.Location };
-		}
-	});
-	if (hospitalDetails == null) {
-		hospitalDetails = { 'id': 'H000', 'location': 'Florida' };
-	}
-	cursorInsurancePolicy.each(function (err, doc) {
-		if (doc != null) {
-			insurancePolicy = { 'insurancePolicy': doc._id, 'premium': doc.Premium, 'coverage': doc.Coverage };
-		}
-	});
-	cursor.each(function (err, doc) {
-		if (doc != null) {
-			console.log(doc.Name);
-			obj = { 'type': type, 'ID': ID, 'name': doc.Name, 'dob': doc.DOB };
-			if (type == 'patient')
+		cursorInsurancePolicy.each(function (err, doc) {
+			if (doc != null) {
+				insurancePolicy = { 'insurancePolicy': doc._id, 'premium': doc.Premium, 'coverage': doc.Coverage };
+			}
+		});
+		cursor.each(function (err, doc) {
+			if (doc != null) {
+				console.log(doc.Name);
+				obj = { 'ID': ID, 'name': doc.Name, 'dob': doc.DOB };
 				res.redirect('/ledger');
-			else
-				res.redirect('/ledger/doctor');
-		}
-	});
+			}
+		});
+	}
 });
 
 // GET /ledger
@@ -115,7 +119,7 @@ app.get('/ledger', function (request, response) {
 app.get('/ledger/doctor', function (req, res) {
 	console.log("GET /ledger/doctor");
 	if (obj != null)
-		res.render("doctor_profile.ejs", obj);
+		res.render("doctor_profile.ejs", { 'obj': obj });
 	else
 		res.send('not happening');
 });
