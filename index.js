@@ -92,7 +92,7 @@ app.post('/ledger/login', function (req, res) {
 	cursor.each(function (err, doc) {
 		if (doc != null) {
 			console.log(doc.Name);
-			obj = { 'type': type, 'ID': ID, 'name': doc.Name };
+			obj = { 'type': type, 'ID': ID, 'name': doc.Name, 'dob': doc.DOB };
 			if (type == 'patient')
 				res.redirect('/ledger');
 			else
