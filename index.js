@@ -16,6 +16,7 @@ let medHist = null;
 let allergies = null;
 let reports = null;
 let insurancePolicy = null;
+let hospitalDetails = null;
 
 // connecting to the mongo db server
 mongoClient.connect(url, function (err, database) {
@@ -55,6 +56,7 @@ app.post('/ledger/login', function (req, res) {
 	var cursorMedHist = null; // medhist, treatment, and doctor details
 	var cursorAllergies = null;
 	var cursorInsurancePolicy = null;
+	var cursorHospital = null;
 	if (type == "doctor")
 		cursor = db.collection('doctors').find({ "ID": ID });
 	else {
@@ -62,6 +64,7 @@ app.post('/ledger/login', function (req, res) {
 		cursorMedHist = db.collection('treatment').find({ "Patient_id": ID });
 		cursorAllergies = db.collection('allergen').find({ "_id": ID });
 		cursorInsurancePolicy = db.collection('insurance').find({ "Patient_id": ID });
+		cursorHospital = db.collection('hospitals').find({ "_id": ID.slice(0, 4) });
 	}
 	cursorMedHist.each(function (err, doc) {
 		if (doc != null) {
@@ -73,6 +76,14 @@ app.post('/ledger/login', function (req, res) {
 			allergies = { 'allergy': doc.Allergy };
 		}
 	});
+	cursorHospital.each(function (err, doc) {
+		if (doc != null) {
+			hospitalDetails = { 'id': doc._id, 'location': doc.Location };
+		}
+	});
+	if (hospitalDetails == null) {
+		hospitalDetails = { 'id': 'H000', 'location': 'Florida' };
+	}
 	cursorInsurancePolicy.each(function (err, doc) {
 		if (doc != null) {
 			insurancePolicy = { 'insurancePolicy': doc._id, 'premium': doc.Premium, 'coverage': doc.Coverage };
@@ -93,8 +104,8 @@ app.post('/ledger/login', function (req, res) {
 // GET /ledger
 app.get('/ledger', function (request, response) {
 	console.log("GET /ledger")
-	if (obj != null){
-		response.render("profile.ejs", { 'obj': obj, 'medHist': medHist, 'allergies': allergies, 'insurancePolicy': insurancePolicy });
+	if (obj != null) {
+		response.render("profile.ejs", { 'obj': obj, 'medHist': medHist, 'allergies': allergies, 'insurancePolicy': insurancePolicy, 'hospitalDetails': hospitalDetails });
 	}
 	else
 		response.send('not happening');
