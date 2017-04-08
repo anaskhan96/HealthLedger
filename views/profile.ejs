@@ -62,8 +62,8 @@
 	<div class="jumbo"></div>
 	<div class="big-icon"></div>
 	<div class="details">
-		<h3><%= name %></h3>
-		<p><%= ID %></p>
+		<h3><%= obj.name %></h3>
+		<p><%= obj.ID %></p>
 	</div>
 	<div class="container bio">
 			<div class="title">
@@ -250,6 +250,15 @@
             </div>
           </div>
         </footer>
+		<script>
+			disease = <%- JSON.stringify(medHist.disease) %>;
+			prescribed = <%- JSON.stringify(medHist.prescribed) %>;
+			prescribedBy = <%- JSON.stringify(medHist.prescribedBy) %>;
+			allergy = <%- JSON.stringify(allergies.allergy) %>;
+			insurance = <%- JSON.stringify(insurancePolicy.insurancePolicy) %>;
+			premium = <%- JSON.stringify(insurancePolicy.premium) %>;
+			coverage = <%- JSON.stringify(insurancePolicy.coverage) %>;
+		</script>
 
 </body>
 
