@@ -10,8 +10,8 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="https://cdn.rawgit.com/anaskhan96/HealthLedger/master/public/style_profile.css" rel="stylesheet">
-<!-- <link href="style_profile.css" rel="stylesheet"> -->
+<!-- <link href="https://cdn.rawgit.com/anaskhan96/HealthLedger/master/public/style_profile.css" rel="stylesheet"> -->
+<link href="style_profile.css" rel="stylesheet">
 <style>
 	.card-content {
 		overflow: hidden;
@@ -253,13 +253,19 @@
           </div>
         </footer>
 		<script>
-			disease = <%- JSON.stringify(medHist.disease) %>;
-			prescribed = <%- JSON.stringify(medHist.prescribed) %>;
-			prescribedBy = <%- JSON.stringify(medHist.prescribedBy) %>;
-			allergy = <%- JSON.stringify(allergies.allergy) %>;
-			insurance = <%- JSON.stringify(insurancePolicy.insurancePolicy) %>;
-			premium = <%- JSON.stringify(insurancePolicy.premium) %>;
-			coverage = <%- JSON.stringify(insurancePolicy.coverage) %>;
+			<% if(medHist != null) { %>
+				disease = <%- JSON.stringify(medHist.disease) %>;
+				prescribed = <%- JSON.stringify(medHist.prescribed) %>;
+				prescribedBy = <%- JSON.stringify(medHist.prescribedBy) %>;
+			<% } %>
+			<% if(allergies != null) { %>
+				allergy = <%- JSON.stringify(allergies.allergy) %>;
+			<% } %>
+			<% if(insurancePolicy != null) { %>
+				insurance = <%- JSON.stringify(insurancePolicy.insurancePolicy) %>;
+				premium = <%- JSON.stringify(insurancePolicy.premium) %>;
+				coverage = <%- JSON.stringify(insurancePolicy.coverage) %>;
+			<% } %>
 		</script>
 
 </body>
