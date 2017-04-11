@@ -3,10 +3,13 @@
 
 <head>
     <title>HealthLedger | Home | Doctor</title>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script> -->
+    <script type="text/javascript" src="/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="/javascript.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css">
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script>-->
+    <script type="text/javascript" src="/materialize.min.js"></script>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css"> -->
+    <link rel="stylesheet" href="/materialize.min.css">
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -46,6 +49,36 @@
             max-height: none;
         }
     </style>
+    <script type="text/javascript">
+        function searchPatient() {
+            patientID = document.getElementById('patient_search').value;
+            $.ajax({
+				type: 'POST',
+				url: '/ledger/doctor',
+				contentType: 'application/json;charset=UTF-8',
+				dataType: 'json',
+				data: JSON.stringify({'patientID': patientID}),
+				success: function(res){
+                    if (res.medHist != null) {
+                        disease = res.medHist.disease;
+                        prescribed = res.medHist.prescribed;
+                        prescribedBy = res.medHist.prescribedBy;
+                    }
+                    if (res.allergies != null) {
+                        allergy = res.allergies.allergy;
+                    }
+                    if (res.insurancePolicy != null) {
+                        insurance = res.insurancePolicy.insurancePolicy;
+                        premium = res.insurancePolicy.premium;
+                        coverage = res.insurancePolicy.coverage;
+                    }
+				},
+				error: function(error){
+					console.log(error);
+				}
+			});
+        }
+    </script>
 </head>
 
 <body>
@@ -74,7 +107,7 @@
             <h5>Patient ID</h5>
 
             <input type="text" id="patient_search" placeholder="Type Patient ID here..." title="Type in a name">
-            <button class="button" onclick="search_patient"><span>Search </span></button>
+            <button class="button" onclick="searchPatient();"><span>Search </span></button>
 
         </div>
             <div class="container posts">
@@ -279,6 +312,15 @@
             </div>
         </div>
     </footer>
+    <script>
+        disease = "";
+        prescribed = "";
+        prescribedBy = "";
+        allergy = "";
+        insurance = "";
+        premium = "";
+        coverage = "";
+    </script>
 
 </body>
 

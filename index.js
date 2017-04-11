@@ -18,6 +18,15 @@ let reports = null;
 let insurancePolicy = null;
 let hospitalDetails = null;
 
+// The horrors I have to go through
+let patientObj = null;
+let patientMedHist = null;
+let patientAllergies = null;
+let patientReports = null;
+let patientInsurancePolicy = null;
+let patientHospitalDetails = null;
+let patientJson = { 'obj': null, 'medHist': null, 'allergies': null, 'insurancePolicy': null, 'hospitalDetails': null };
+
 // connecting to the mongo db server
 mongoClient.connect(url, function (err, database) {
 	if (!err) {
@@ -124,6 +133,50 @@ app.get('/ledger/doctor', function (req, res) {
 		res.send('not happening');
 });
 
+// POST /ledger/doctor
+app.post('/ledger/doctor', function (req, res) {
+	var patientID = req.body.patientID;
+	var cursor = db.collection('patients').find({ "_id": patientID });
+	var cursorMedHist = db.collection('treatment').find({ "Patient_id": patientID });
+	var cursorAllergies = db.collection('allergen').find({ "_id": patientID });
+	var cursorInsurancePolicy = db.collection('insurance').find({ "Patient_id": patientID });
+	var cursorHospital = db.collection('hospitals').find({ "_id": patientID.slice(0, 4) });
+	cursorMedHist.each(function (err, doc) {
+		if (doc != null) {
+			patientMedHist = { 'disease': doc.Treat_for, 'prescribed': doc.Prescription, 'prescribedBy': doc.Doctor_id };
+			patientJson['medHist'] = patientMedHist;
+		}
+	});
+	cursorAllergies.each(function (err, doc) {
+		if (doc != null) {
+			patientAllergies = { 'allergy': doc.Allergy };
+			patientJson['allergies'] = patientAllergies;
+		}
+	});
+	cursorHospital.each(function (err, doc) {
+		if (doc != null) {
+			patientHospitalDetails = { 'id': doc._id, 'location': doc.Location };
+			patientJson['hospitalDetails'] = patientHospitalDetails;
+		}
+	});
+	if (patientHospitalDetails == null) {
+		patientHospitalDetails = { 'id': 'H000', 'location': 'Florida' };
+	}
+	cursorInsurancePolicy.each(function (err, doc) {
+		if (doc != null) {
+			patientInsurancePolicy = { 'insurancePolicy': doc._id, 'premium': doc.Premium, 'coverage': doc.Coverage };
+			patientJson['insurancePolicy'] = patientInsurancePolicy;
+		}
+	});
+	cursor.each(function (err, doc) {
+		if (doc != null) {
+			patientObj = { 'ID': patientID, 'name': doc.Name, 'dob': doc.DOB };
+			patientJson['obj'] = patientObj;
+			res.send(patientJson);
+		}
+	});
+});
+
 // GET /ledger (called when switch button is clicked)
 app.get('/ledger/switch', function (req, res) {
 	console.log("GET /ledger/switch");
@@ -170,6 +223,13 @@ app.post('/ledger/react-check', function (req, res) {
 	});
 	var confirmation = "Message Sent to MQTT";
 	res.send({ "confirm": confirmation });
+});
+
+app.post('/ledger/now', function(req, res) {
+	var led = req.body.led.slice(4);
+	msg = "l" + led + "1";
+	client.publish('mpca', msg);
+	res.send({ 'confirm': 'Message Sent Now' });
 });
 
 // Listening on 127.0.0.1:5000
