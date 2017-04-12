@@ -4,28 +4,21 @@ var bodyParser = require('body-parser'); // required for AJAX POST
 var mongodb = require('mongodb'); // mongodb package for node
 var mongoClient = mongodb.MongoClient;
 //uncomment before commit
-var url = 'mongodb://dbms:shaata420@anask.xyz:27017/HealthLedger';
-//var url = 'mongodb://localhost:27017/HealthLedger';
+//var url = 'mongodb://dbms:shaata420@anask.xyz:27017/HealthLedger';
+var url = 'mongodb://localhost:27017/HealthLedger';
 var mqtt = require('mqtt');
 var schedule = require('node-schedule');
 
 let db = null;
 
 let obj = null;
+let doctorObj = null;
 let medHist = null;
 let allergies = null;
 let reports = null;
 let insurancePolicy = null;
 let hospitalDetails = null;
 
-// The horrors I have to go through
-let patientObj = null;
-let patientMedHist = null;
-let patientAllergies = null;
-let patientReports = null;
-let patientInsurancePolicy = null;
-let patientHospitalDetails = null;
-let patientJson = { 'obj': null, 'medHist': null, 'allergies': null, 'insurancePolicy': null, 'hospitalDetails': null };
 
 // connecting to the mongo db server
 mongoClient.connect(url, function (err, database) {
@@ -70,7 +63,7 @@ app.post('/ledger/login', function (req, res) {
 		cursor = db.collection('doctors').find({ "ID": ID });
 		cursor.each(function (err, doc) {
 			if (doc != null) {
-				obj = { 'ID': ID, 'name': doc.Name, 'dob': doc.DOB }
+				doctorObj = { 'ID': ID, 'name': doc.Name, 'dob': doc.DOB }
 				res.redirect('/ledger/doctor');
 			}
 		});
@@ -127,8 +120,8 @@ app.get('/ledger', function (request, response) {
 // GET /ledger/doctor
 app.get('/ledger/doctor', function (req, res) {
 	console.log("GET /ledger/doctor");
-	if (obj != null)
-		res.render("doctor_profile.ejs", { 'obj': obj });
+	if (doctorObj != null)
+		res.render("doctor_profile.ejs", { 'obj': doctorObj });
 	else
 		res.send('not happening');
 });
@@ -143,36 +136,31 @@ app.post('/ledger/doctor', function (req, res) {
 	var cursorHospital = db.collection('hospitals').find({ "_id": patientID.slice(0, 4) });
 	cursorMedHist.each(function (err, doc) {
 		if (doc != null) {
-			patientMedHist = { 'disease': doc.Treat_for, 'prescribed': doc.Prescription, 'prescribedBy': doc.Doctor_id };
-			patientJson['medHist'] = patientMedHist;
+			medHist = { 'disease': doc.Treat_for, 'prescribed': doc.Prescription, 'prescribedBy': doc.Doctor_id };
 		}
 	});
 	cursorAllergies.each(function (err, doc) {
 		if (doc != null) {
-			patientAllergies = { 'allergy': doc.Allergy };
-			patientJson['allergies'] = patientAllergies;
+			allergies = { 'allergy': doc.Allergy };
 		}
 	});
 	cursorHospital.each(function (err, doc) {
 		if (doc != null) {
-			patientHospitalDetails = { 'id': doc._id, 'location': doc.Location };
-			patientJson['hospitalDetails'] = patientHospitalDetails;
+			hospitalDetails = { 'id': doc._id, 'location': doc.Location };
 		}
 	});
-	if (patientHospitalDetails == null) {
-		patientHospitalDetails = { 'id': 'H000', 'location': 'Florida' };
+	if (hospitalDetails == null) {
+		hospitalDetails = { 'id': 'H000', 'location': 'Florida' };
 	}
 	cursorInsurancePolicy.each(function (err, doc) {
 		if (doc != null) {
-			patientInsurancePolicy = { 'insurancePolicy': doc._id, 'premium': doc.Premium, 'coverage': doc.Coverage };
-			patientJson['insurancePolicy'] = patientInsurancePolicy;
+			insurancePolicy = { 'insurancePolicy': doc._id, 'premium': doc.Premium, 'coverage': doc.Coverage };
 		}
 	});
 	cursor.each(function (err, doc) {
 		if (doc != null) {
-			patientObj = { 'ID': patientID, 'name': doc.Name, 'dob': doc.DOB };
-			patientJson['obj'] = patientObj;
-			res.send(patientJson);
+			obj = { 'ID': patientID, 'name': doc.Name, 'dob': doc.DOB };
+			res.redirect('/ledger');
 		}
 	});
 });
@@ -196,6 +184,16 @@ app.post('/ledger', function (request, response) {
 		// Sending back the third JSON document
 		response.send(docs[2]);
 	});
+});
+
+app.get('/ledger/patient-form', function (req, res) {
+	console.log('GET /ledger/patient-form');
+	res.render('add_patient.ejs');
+});
+
+app.post('/ledger/patient-form', function (req, res) {
+	console.log('POST /ledger/patient-form');
+	res.send('POST received');
 });
 
 
@@ -225,7 +223,7 @@ app.post('/ledger/react-check', function (req, res) {
 	res.send({ "confirm": confirmation });
 });
 
-app.post('/ledger/now', function(req, res) {
+app.post('/ledger/now', function (req, res) {
 	var led = req.body.led.slice(4);
 	msg = "l" + led + "1";
 	client.publish('mpca', msg);

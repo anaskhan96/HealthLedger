@@ -49,36 +49,6 @@
             max-height: none;
         }
     </style>
-    <script type="text/javascript">
-        function searchPatient() {
-            patientID = document.getElementById('patient_search').value;
-            $.ajax({
-				type: 'POST',
-				url: '/ledger/doctor',
-				contentType: 'application/json;charset=UTF-8',
-				dataType: 'json',
-				data: JSON.stringify({'patientID': patientID}),
-				success: function(res){
-                    if (res.medHist != null) {
-                        disease = res.medHist.disease;
-                        prescribed = res.medHist.prescribed;
-                        prescribedBy = res.medHist.prescribedBy;
-                    }
-                    if (res.allergies != null) {
-                        allergy = res.allergies.allergy;
-                    }
-                    if (res.insurancePolicy != null) {
-                        insurance = res.insurancePolicy.insurancePolicy;
-                        premium = res.insurancePolicy.premium;
-                        coverage = res.insurancePolicy.coverage;
-                    }
-				},
-				error: function(error){
-					console.log(error);
-				}
-			});
-        }
-    </script>
 </head>
 
 <body>
@@ -108,15 +78,15 @@
         <div class="search_list">
             <h5>Patient ID</h5>
 
-            <form method="POST" action="">
-                <input type="text" id="patient_search" placeholder="Type Patient ID here..." title="Type in a name">
-                <button class="button" onclick="searchPatient();"><span>Search </span></button>
+            <form method="POST" action="/ledger/doctor">
+                <input type="text" id="patient_search" name="patientID" placeholder="Type Patient ID here..." title="Type in a name">
+                <button class="button" type="submit"><span>Search </span></button>
             </form>
 
             <hr>
 
             <!--<h5 style="margin-top: 4rem;">OR</h5>-->
-            <a href="/ledger/add">
+            <a href="/ledger/patient-form">
             <button class="button" style="width: 30%; margin-top: 4rem;"><span>Add Patient </span></button>
             </a>
         </div>
