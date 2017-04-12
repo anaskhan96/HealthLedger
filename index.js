@@ -114,7 +114,7 @@ app.get('/ledger', function (request, response) {
 		response.render("profile.ejs", { 'obj': obj, 'medHist': medHist, 'allergies': allergies, 'insurancePolicy': insurancePolicy, 'hospitalDetails': hospitalDetails });
 	}
 	else
-		response.send('not happening');
+		response.render('login_redirect.ejs');
 });
 
 // GET /ledger/doctor
@@ -123,7 +123,7 @@ app.get('/ledger/doctor', function (req, res) {
 	if (doctorObj != null)
 		res.render("doctor_profile.ejs", { 'obj': doctorObj });
 	else
-		res.send('not happening');
+		res.render('login_redirect.ejs');
 });
 
 // POST /ledger/doctor
@@ -194,25 +194,33 @@ app.get('/ledger/patient-form', function (req, res) {
 app.post('/ledger/patient-form', function (req, res) {
 	console.log('POST /ledger/patient-form');
 	var ID = req.body.id;
-	var name = req.body.name;
-	var dob = req.body.dob;
-	obj = { 'ID': ID, 'name': name, 'dob': dob };
-	db.collection('patients').save({ '_id': ID, 'Name': name, 'DOB': dob });
-	var policyId = req.body.pid;
-	var premium = req.body.prem;
-	var coverage = req.body.cov;
-	insurancePolicy = { 'insurancePolicy': policyId, 'premium': premium, 'coverage': coverage };
-	db.collection('insurance').save({ '_id': policyId, 'Patient_id': ID, 'Premium': premium, 'Coverage': coverage });
-	var roomType = req.body.roomType;
-	var roomNumber = req.body.rno;
-	var floor = req.body.floor;
-	db.collection('staying').save({ '_id': ID, 'Type': roomType, 'Room_no': roomNumber, 'Floor': floor });
-	var disease = req.body.disease;
-	var prescribed = req.body.pres;
-	var prescribedBy = doctorObj.ID;
-	medHist = { 'disease': disease, 'prescribed': prescribed, 'prescribedBy': prescribedBy };
-	db.collection('treatment').save({ '_id': roomNumber, 'Doctor_id': prescribedBy, 'Treat_for': disease, 'Prescription': prescribed });
-	res.redirect('/ledger');
+	if (ID == "") {
+		res.redirect('/ledger/error');
+	} else {
+		var name = req.body.name;
+		var dob = req.body.dob;
+		obj = { 'ID': ID, 'name': name, 'dob': dob };
+		db.collection('patients').save({ '_id': ID, 'Name': name, 'DOB': dob });
+		var policyId = req.body.pid;
+		var premium = req.body.prem;
+		var coverage = req.body.cov;
+		insurancePolicy = { 'insurancePolicy': policyId, 'premium': premium, 'coverage': coverage };
+		db.collection('insurance').save({ '_id': policyId, 'Patient_id': ID, 'Premium': premium, 'Coverage': coverage });
+		var roomType = req.body.roomType;
+		var roomNumber = req.body.rno;
+		var floor = req.body.floor;
+		db.collection('staying').save({ '_id': ID, 'Type': roomType, 'Room_no': roomNumber, 'Floor': floor });
+		var disease = req.body.disease;
+		var prescribed = req.body.pres;
+		var prescribedBy = doctorObj.ID;
+		medHist = { 'disease': disease, 'prescribed': prescribed, 'prescribedBy': prescribedBy };
+		db.collection('treatment').save({ '_id': roomNumber, 'Doctor_id': prescribedBy, 'Treat_for': disease, 'Prescription': prescribed });
+		res.redirect('/ledger');
+	}
+});
+
+app.get('/ledger/error', function (req, res) {
+	res.render('error.ejs');
 });
 
 
