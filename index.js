@@ -17,7 +17,7 @@ let medHist = null;
 let allergies = null;
 let reports = null;
 let insurancePolicy = null;
-let hospitalDetails = null;
+let hospitalDetails = { 'id': 'H000', 'location': 'Florida' };
 
 
 // connecting to the mongo db server
@@ -193,7 +193,26 @@ app.get('/ledger/patient-form', function (req, res) {
 
 app.post('/ledger/patient-form', function (req, res) {
 	console.log('POST /ledger/patient-form');
-	res.send('POST received');
+	var ID = req.body.id;
+	var name = req.body.name;
+	var dob = req.body.dob;
+	obj = { 'ID': ID, 'name': name, 'dob': dob };
+	db.collection('patients').save({ '_id': ID, 'Name': name, 'DOB': dob });
+	var policyId = req.body.pid;
+	var premium = req.body.prem;
+	var coverage = req.body.cov;
+	insurancePolicy = { 'insurancePolicy': policyId, 'premium': premium, 'coverage': coverage };
+	db.collection('insurance').save({ '_id': policyId, 'Patient_id': ID, 'Premium': premium, 'Coverage': coverage });
+	var roomType = req.body.roomType;
+	var roomNumber = req.body.rno;
+	var floor = req.body.floor;
+	db.collection('staying').save({ '_id': ID, 'Type': roomType, 'Room_no': roomNumber, 'Floor': floor });
+	var disease = req.body.disease;
+	var prescribed = req.body.pres;
+	var prescribedBy = doctorObj.ID;
+	medHist = { 'disease': disease, 'prescribed': prescribed, 'prescribedBy': prescribedBy };
+	db.collection('treating').save({ '_id': ID, 'Doctor_id': prescribedBy, 'Treat_for': prescribed });
+	res.redirect('/ledger');
 });
 
 

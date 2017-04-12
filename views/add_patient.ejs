@@ -29,22 +29,22 @@
 <div class="col-md-8 col-md-offset-2">
 
 <!--Begin New Application Form-->     
-<form action="/ledger/patient-form" enctype="multipart/form-data" id="appform" method="post" name="appform">            
+<form action="/ledger/patient-form" id="appform" method="post">            
             <div class="panel panel-primary">
                 <div class="panel-heading">General Information</div>
                 <div class="panel-body">
                     <p>Please enter details about the patient.</p>
                     <div class="form-group">
                         <label class="control-label">Patient ID</label>
-                        <input type="text" id="pid" name="pid" class="form-control" placeholder="Patient ID">
+                        <input type="text" name="id" class="form-control" placeholder="Patient ID">
                     </div>
                     <div class="form-group">
                         <label class="control-label">Name of Patient</label>
-                        <input type="text" id="pnam" name="pnam" class="form-control" placeholder="Patient Name">
+                        <input type="text" name="name" class="form-control" placeholder="Patient Name">
                     </div>
                     <div class="form-group">
                         <label class="control-label">DOB</label>
-                        <input type="text" id="pdob" name="pdob" class="form-control" placeholder="dd/mm/yyyy">
+                        <input type="text" name="dob" class="form-control" placeholder="dd/mm/yyyy">
                     </div>
                 </div>
             </div>
@@ -55,15 +55,15 @@
                     <div class="row">
                     <div class="form-group col-md-2">
                         <label class="control-label">Policy ID</label>
-                        <input class="form-control" type="text" id="pid" name="pid" placeholder="I12345">
+                        <input class="form-control" type="text" name="pid" placeholder="I12345">
                     </div>
                     <div class="form-group col-md-4">
                         <label class="control-label">Premium</label>
-                        <input class="form-control" type="text" id="prem" name="prem" placeholder="Amount in Rs">
+                        <input class="form-control" type="text" name="prem" placeholder="Amount in Rs">
                     </div>
                     <div class="form-group col-md-2">
                         <label class="control-label">Coverage</label>
-                        <input class="form-control" type="text" id="cov" name="cov" placeholder="Years">
+                        <input class="form-control" type="text" name="cov" placeholder="Years">
                     </div>
                 </div>
                 </div>
@@ -75,15 +75,15 @@
                     <div class="row">
                     <div class="form-group col-md-2">
                         <label class="control-label">Type</label>
-                        <select class="form-control" id="type" name="type">
-                            <option value="r">Regular</option>
-                            <option value="a">AC</option>
-                            <option value="d">Deluxe</option>
+                        <select class="form-control" id="type" name="roomType">
+                            <option value="Regular">Regular</option>
+                            <option value="AC">AC</option>
+                            <option value="Deluxe">Deluxe</option>
                         </select>
                     </div>
                     <div class="form-group col-md-4">
                         <label class="control-label">Room Number</label>
-                        <input class="form-control" type="text" id="rno" name="rno" placeholder="Room Number">
+                        <input class="form-control" type="text" name="rno" placeholder="Room Number">
                     </div>
                     <div class="form-group col-md-2">
                         <label class="control-label">Floor</label>
@@ -102,11 +102,11 @@
                 <div class="panel-body">
                     <div class="form-group">
                         <label class="control-label">Treat for</label>
-                        <input class="form-control" placeholder="ailment" type="text" id="disease" name="disease">
+                        <input class="form-control" placeholder="ailment" type="text" name="disease">
                     </div>
                     <div class="form-group">
                         <label class="control-label">Prescription</label>
-                        <textarea class="form-control" placeholder="Prescribed treatment." id="pres" name="pres"></textarea>
+                        <textarea class="form-control" placeholder="Prescribed treatment." name="pres"></textarea>
                     </div>
                 </div>
             </div>
