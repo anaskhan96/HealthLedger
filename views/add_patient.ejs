@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Patient Details</title>
+  
+  
+  <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css'>
+<style>
+    body{
+        background-image: url("https://media.giphy.com/media/UjdQvOJHgxMPe/giphy.gif");
+
+    }
+
+    .jumbotron{
+        text-align: center;
+        margin-bottom: 0;
+    }
+</style>
+  
+  
+</head>
+
+<body>
+  <div class="container-fluid">
+      <div class="jumbotron">
+        <h1>Welcome to Health Ledger</h1>
+    </div>      
+<div class="col-md-8 col-md-offset-2">
+
+<!--Begin New Application Form-->     
+<form action="/Application" enctype="multipart/form-data" id="appform" method="post" name="appform">            
+            <div class="panel panel-primary">
+                <div class="panel-heading">General Information</div>
+                <div class="panel-body">
+                    <p>Please enter details about the patient.</p>
+                    <div class="form-group">
+                        <label class="control-label">Patient ID</label>
+                        <input type="text" id="pid" name="pid" class="form-control" placeholder="Patient ID">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Name of Patient</label>
+                        <input type="text" id="pnam" name="pnam" class="form-control" placeholder="Patient Name">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">DOB</label>
+                        <input type="text" id="pdob" name="pdob" class="form-control" placeholder="dd/mm/yyyy">
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">Insurance Details</div>
+                <div class="panel-body">
+                    <p>Please provide the following information about the patient's insurance.</p>
+                    <div class="row">
+                    <div class="form-group col-md-2">
+                        <label class="control-label">Policy ID</label>
+                        <input class="form-control" type="text" id="pid" name="pid" placeholder="I12345">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="control-label">Premium</label>
+                        <input class="form-control" type="text" id="prem" name="prem" placeholder="Amount in Rs">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label class="control-label">Coverage</label>
+                        <input class="form-control" type="text" id="cov" name="cov" placeholder="Years">
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">Room</div>
+                <div class="panel-body">
+                    <p>Details about the patient's residence in the hospital.</p>
+                    <div class="row">
+                    <div class="form-group col-md-2">
+                        <label class="control-label">Type</label>
+                        <select class="form-control" id="type" name="type">
+                            <option value="r">Regular</option>
+                            <option value="a">AC</option>
+                            <option value="d">Deluxe</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="control-label">Room Number</label>
+                        <input class="form-control" type="text" id="rno" name="rno" placeholder="Room Number">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label class="control-label">Floor</label>
+                        <select class="form-control" id="floor" name="floor">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">Treatment</div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label class="control-label">Treat for</label>
+                        <input class="form-control" placeholder="ailment" type="text" id="disease" name="disease">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Prescription</label>
+                        <textarea class="form-control" placeholder="Prescribed treatment." id="pres" name="pres"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">Reports</div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label class="control-label">Report Link</label>
+
+                        <input class="form-control" type="file" name="rep" id="rep" accept="application/pdf">
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">Verify</div>
+                <div class="panel-body center">
+                    <p>Patient agrees to the servies of HealthLedger™.</p>
+                    <div class="form-group">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="verify" name="verify" value="verified"><strong>Agreed.</strong>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="center">
+                <button id="submit" type="submit" class="btn btn-lg btn-success btn-responsive" id="sub" disabled="disabled" style="margin-bottom: 10rem !important;">Submit Application</button>
+            </div>
+
+            <p style="color: white;"> HealthLedger™ Copyright © 2017 </p>
+</form>
+<!--End New Application Form-->
+
+</div>
+</div>
+  
+  
+</body>
+</html>
