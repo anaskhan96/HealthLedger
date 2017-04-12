@@ -211,7 +211,7 @@ app.post('/ledger/patient-form', function (req, res) {
 	var prescribed = req.body.pres;
 	var prescribedBy = doctorObj.ID;
 	medHist = { 'disease': disease, 'prescribed': prescribed, 'prescribedBy': prescribedBy };
-	db.collection('treating').save({ '_id': ID, 'Doctor_id': prescribedBy, 'Treat_for': prescribed });
+	db.collection('treatment').save({ '_id': roomNumber, 'Doctor_id': prescribedBy, 'Treat_for': disease, 'Prescription': prescribed });
 	res.redirect('/ledger');
 });
 
