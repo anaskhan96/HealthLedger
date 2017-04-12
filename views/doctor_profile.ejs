@@ -108,15 +108,17 @@
         <div class="search_list">
             <h5>Patient ID</h5>
 
-            <input type="text" id="patient_search" placeholder="Type Patient ID here..." title="Type in a name">
-            <button class="button" onclick="searchPatient();"><span>Search </span></button>
+            <form method="POST" action="">
+                <input type="text" id="patient_search" placeholder="Type Patient ID here..." title="Type in a name">
+                <button class="button" onclick="searchPatient();"><span>Search </span></button>
+            </form>
 
             <hr>
 
-            <h5 style="margin-top: 4rem;">New Patient ID</h5>
-            <input type="text" id="patient_search" placeholder="Type New Patient ID here..." title="Type in a name">
-            <button class="button" onclick="searchPatient();" style="width: 30%;"><span>Add Patient </span></button>
-
+            <!--<h5 style="margin-top: 4rem;">OR</h5>-->
+            <a href="/ledger/add">
+            <button class="button" style="width: 30%; margin-top: 4rem;"><span>Add Patient </span></button>
+            </a>
         </div>
     </main>
 
