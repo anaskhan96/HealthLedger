@@ -33,321 +33,111 @@
             <div class="panel panel-primary">
                 <div class="panel-heading">General Information</div>
                 <div class="panel-body">
-                    <p>Please provide the following information about your business.</p>
+                    <p>Please enter details about the patient.</p>
                     <div class="form-group">
-                        <label class="control-label">Name of Business</label>
-                        <input type="text" class="form-control" id="NameOfBusiness" name="NameOfBusiness" placeholder="Name of Business">
+                        <label class="control-label">Patient ID</label>
+                        <h4> </h4>
                     </div>
                     <div class="form-group">
-                        <label class="control-label">Contact Person</label>
-                        <input type="text" class="form-control" id="ContactPerson" name="ContactPerson" placeholder="Contact Person">
+                        <label class="control-label">Name of Patient</label>
+                        <h4> </h4>
                     </div>
                     <div class="form-group">
-                        <label class="control-label">Primary Phone</label>
-                        <input class="form-control" type="text" name="PriPhoneNumber" placeholder="Primary Phone">
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">Secondary Phone</label>
-                        <input class="form-control" type="text" id="SecPhoneNumber" name="SecPhoneNumber" placeholder="Secondary Phone">
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">Email</label>
-                        <input class="form-control" type="email" id="EmailAddress" name="EmailAddress" placeholder="Email Address">
+                        <label class="control-label">DOB</label>
+                        <h4> </h4>
                     </div>
                 </div>
             </div>
             <div class="panel panel-primary">
-                <div class="panel-heading">Location of Business</div>
+                <div class="panel-heading">Insurance Details</div>
                 <div class="panel-body">
-                    <p>Please provide the following information about the location of your business.</p>
+                    <p>Please provide the following information about the patient's insurance.</p>
                     <div class="row">
                     <div class="form-group col-md-2">
-                        <label class="control-label">Number</label>
-                        <input class="form-control" type="text" id="BusinessLocation_Address_StreetNum" name="BusinessLocation_Address_StreetNum" placeholder="123">
+                        <label class="control-label">Policy ID</label>
+                        <input class="form-control" type="text" id="pid" name="pid" placeholder="I12345">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="control-label">Premium</label>
+                        <input class="form-control" type="text" id="prem" name="prem" placeholder="Amount in Rs">
                     </div>
                     <div class="form-group col-md-2">
-                        <label class="control-label">Direction</label>
-                        <select class="form-control" id="BusinessLocation_Address_StreetDir" name="BusinessLocation_Address_StreetDir">
-                            <option value="">N/A</option>
-                            <option value="N">North</option>
-                            <option value="E">East</option>
-                            <option value="W">West</option>
-                            <option value="S">South</option>
+                        <label class="control-label">Coverage</label>
+                        <input class="form-control" type="text" id="cov" name="cov" placeholder="Years">
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">Room</div>
+                <div class="panel-body">
+                    <p>Details about the patient's residence in the hospital.</p>
+                    <div class="row">
+                    <div class="form-group col-md-2">
+                        <label class="control-label">Type</label>
+                        <select class="form-control" id="type" name="type">
+                            <option value="r">Regular</option>
+                            <option value="a">AC</option>
+                            <option value="d">Deluxe</option>
                         </select>
                     </div>
                     <div class="form-group col-md-4">
-                        <label class="control-label">Street Name</label>
-                        <input class="form-control" type="text" id="BusinessLocation_Address_StreetName" name="BusinessLocation_Address_StreetName" placeholder="Sycamore">
+                        <label class="control-label">Room Number</label>
+                        <input class="form-control" type="text" id="rno" name="rno" placeholder="Room Number">
                     </div>
                     <div class="form-group col-md-2">
-                        <label class="control-label">Street Type</label>
-                        <input class="form-control" type="text" id="BusinessLocation_Address_StreetType" name="BusinessLocation_Address_StreetType" placeholder="St">
-                    </div>
-                    <div class="form-group col-md-2">
-                        <label class="control-label">Unit/Suite</label>
-                        <input class="form-control" type="text" id="BusinessLocation_Address_Unit" name="BusinessLocation_Address_Unit" placeholder="2">
-                    </div>
-                </div>
-                    <div class="form-group">
-                        <label class="control-label">City</label>
-                        <input class="form-control" type="text" value="Lexington" id="BusinessLocation_City" name="BusinessLocation_City">
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">State</label>
-                        <input class="form-control" type="text" value="KY" id="BusinessLocation_State" name="BusinessLocation_State">
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">Zip</label>
-                        <input class="form-control" type="text" id="BusinessLocation_Zip" name="BusinessLocation_Zip" placeholder="Zip Code">
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">Previous Occupant (if known)</label>
-                        <input class="form-control" type="text" id="PreviousOccupant" name="PreviousOccupant" placeholder="Previous Occupant (if known)">
-                    </div>
-                </div>
-            </div>
-            <div class="panel panel-primary">
-                <div class="panel-heading">Business Address</div>
-                <div class="panel-body">
-                    <p>Please provide your business address. If the addresses is the same as above, click the button below.</p>
-                    <div class="form-group center">
-                        <button type="button" class="btn btn-danger btn-responsive" id="CopyAddress">It's the same as the one I already typed in, go ahead and fill it out for me.</button>
-                    </div>
-                    <div class="row">
-                    <div class="form-group col-md-2">
-                        <label class="control-label">Number</label>
-                        <input class="form-control" type="text" id="ParentLocation_Address_StreetNum" name="ParentLocation_Address_StreetNum" placeholder="123">
-                    </div>
-                    <div class="form-group col-md-2">
-                        <label class="control-label">Direction</label>
-                        <select class="form-control" id="ParentLocation_Address_StreetDir" name="ParentLocation_Address_StreetDir">
-                            <option value="">N/A</option>
-                            <option value="N">North</option>
-                            <option value="E">East</option>
-                            <option value="W">West</option>
-                            <option value="S">South</option>
+                        <label class="control-label">Floor</label>
+                        <select class="form-control" id="floor" name="floor">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
                         </select>
                     </div>
-                    <div class="form-group col-md-4">
-                        <label class="control-label">Street Name</label>
-                        <input class="form-control" type="text" id="ParentLocation_Address_StreetName" name="ParentLocation_Address_StreetName" placeholder="Sycamore">
-                    </div>
-                    <div class="form-group col-md-2">
-                        <label class="control-label">Street Type</label>
-                        <input class="form-control" type="text" id="ParentLocation_Address_StreetType" name="ParentLocation_Address_StreetType" placeholder="St">
-                    </div>
-                    <div class="form-group col-md-2">
-                        <label class="control-label">Unit/Suite</label>
-                        <input class="form-control" type="text" id="ParentLocation_Address_Unit" name="ParentLocation_Address_Unit" placeholder="2">
-                    </div>
                 </div>
+                </div>
+            </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">Treatment</div>
+                <div class="panel-body">
                     <div class="form-group">
-                        <label class="control-label">City</label>
-                        <input class="form-control" type="text" id="ParentLocation_City" name="ParentLocation_City" value="Lexington">
+                        <label class="control-label">Treat for</label>
+                        <input class="form-control" placeholder="ailment" type="text" id="disease" name="disease">
                     </div>
                     <div class="form-group">
-                        <label class="control-label">State</label>
-                        <input class="form-control" type="text" id="ParentLocation_State" name="ParentLocation_State" value="KY">
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">Zip</label>
-                        <input class="form-control" type="text" id="ParentLocation_Zip" name="ParentLocation_Zip" placeholder="Zip Code">
+                        <label class="control-label">Prescription</label>
+                        <textarea class="form-control" placeholder="Prescribed treatment." id="pres" name="pres"></textarea>
                     </div>
                 </div>
             </div>
             <div class="panel panel-primary">
-                <div class="panel-heading">Business Activities</div>
-                <div class="panel-body">
-                    <p>Please provide the following information about the type of business you would like to operate.</p>
-                    <div class="form-group">
-                        <label class="control-label">Type of Business:</label>
-                        <input class="form-control" placeholder="e.g. clothing store, gas station, etc." type="text" id="BusinessType" name="BusinessType">
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">Description of Business Activities:</label>
-                        <textarea class="form-control" placeholder="e.g. sale of clothing, sale of gasoline and convenience items, etc." id="BusinessActivity" name="BusinessActivity"></textarea>
-                    </div>
-                </div>
-            </div>
-            <div class="panel panel-primary">
-                <div class="panel-heading">Attachments</div>
+                <div class="panel-heading">Reports</div>
                 <div class="panel-body">
                     <div class="form-group">
-                        <label class="control-label">Site Plan</label>
+                        <label class="control-label">Report Link</label>
 
-                        <input class="form-control" type="file" name="SitePlan" id="SitePlan" accept="application/pdf">
+                        <input class="form-control" type="file" name="rep" id="rep" accept="application/pdf">
                     </div>
                 </div>
             </div>
             <div class="panel panel-primary">
                 <div class="panel-heading">Verify</div>
                 <div class="panel-body center">
-                    <p>The information I have entered is accurate, I am authorized to submit this application, and I understand that a fee of $25 will be required to receive my Certificate of Occupancy.</p>
+                    <p>Patient agrees to the servies of HealthLedger™.</p>
                     <div class="form-group">
                         <label class="checkbox-inline">
-                            <input type="checkbox" id="verify" name="verify" value="verified"><strong>I Agree.</strong>
+                            <input type="checkbox" id="verify" name="verify" value="verified"><strong>Agreed.</strong>
                         </label>
                     </div>
                 </div>
             </div>
             <div class="center">
-                <button id="submit" type="submit" class="btn btn-lg btn-success btn-responsive" disabled="disabled">Submit Application</button>
+                <button id="submit" type="submit" class="btn btn-lg btn-success btn-responsive" id="sub" disabled="disabled" style="margin-bottom: 10rem !important;">Submit Application</button>
             </div>
+
+            <p style="color: white;"> HealthLedger™ Copyright © 2017 </p>
 </form>
 <!--End New Application Form-->
-  
-<!--Begin Internal Review Form-->   
-<form action="/Review/SaveApplicationReview" id="appform" method="post">        <div class="panel panel-primary">
-            <div class="panel-heading">General Information</div>
-            <div class="panel-body">
-                <input data-val="true" data-val-required="The Application_Guid field is required." id="Application_Application_Guid" name="Application.Application_Guid" type="hidden" value=""/>
-                <div class="form-group">
-                    <label class="control-label">Name of Business</label>
-                    <input id="Application_CompanyName" class="form-control" type="text" value=""name="Application.CompanyName">
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Contact Person</label>
-                    <input class="form-control" id="Application_ContactPrimary" name="Application.ContactPrimary" type="text" value=""/>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Primary Phone</label>
-                    <input class="form-control" id="Application_PhonePrimary" name="Application.PhonePrimary" type="text" value=""/>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Secondary Phone</label>
-                    <input class="form-control" id="Application_PhoneSecondary" name="Application.PhoneSecondary" type="text" value=""/>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Email</label>
-                    <input class="form-control" id="Application_ContactEmail" name="Application.ContactEmail" type="email" value=""/>
-                </div>
-            </div>
-        </div>
-        <div class="panel panel-primary">
-            <div class="panel-heading">Location of Business</div>
-            <div class="panel-body">
-                <p>Please provide the following information about the location of your business.</p>
-                <div class="row">
-                <div class="form-group col-md-2">
-                    <label class="control-label">Number</label>
-                    <input class="form-control" data-val="true" data-val-number="The field Streeet_Num must be a number." data-val-required="The Streeet_Num field is required." id="Application_CertOccLocalAddress_Streeet_Num" name="Application.CertOccLocalAddress.Streeet_Num" type="text" value=""/>
-                </div>
-                <div class="form-group col-md-2">
-                    <label class="control-label">Direction</label>
-                    <input class="form-control" id="Application_CertOccLocalAddress_Street_Dir" name="Application.CertOccLocalAddress.Street_Dir" type="text" value=""/>
-                </div>
-                <div class="form-group col-md-4">
-                    <label class="control-label">Street Name</label>
-                    <input class="form-control" id="Application_CertOccLocalAddress_Street_Name" name="Application.CertOccLocalAddress.Street_Name" type="text" value=""/>
-                </div>
-                <div class="form-group col-md-2">
-                    <label class="control-label">Street Type</label>
-                    <input class="form-control" id="Application_CertOccLocalAddress_Street_Type" name="Application.CertOccLocalAddress.Street_Type" type="text" value=""/>
-                </div>
-                <div class="form-group col-md-2">
-                    <label class="control-label">Unit/Suite</label>
-                    <input class="form-control" id="Application_CertOccLocalAddress_Street_Unit" name="Application.CertOccLocalAddress.Street_Unit" type="text" value=""/>
-                </div>
-            </div>
-                <div class="form-group">
-                    <label class="control-label">City</label>
-                    <input class="form-control" id="Application_CertOccLocalAddress_City" name="Application.CertOccLocalAddress.City" type="text" value=""/>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">State</label>
-                    <input class="form-control" id="Application_CertOccLocalAddress_State" name="Application.CertOccLocalAddress.State" type="text" value=""/>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Zip</label>
-                    <input class="form-control" id="Application_CertOccLocalAddress_Zip" name="Application.CertOccLocalAddress.Zip" type="text" value=""/>
-
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Previous Occupant (if known)</label>
-                    <input class="form-control" id="Application_PreviousOccupant" name="Application.PreviousOccupant" type="text" value=""/>
-                </div>
-            </div>
-        </div>
-        <div class="panel panel-primary">
-            <div class="panel-heading">Business Address</div>
-            <div class="panel-body">
-                <div class="row">
-                <div class="form-group col-md-2">
-                    <label class="control-label">Number</label>
-                    <input class="form-control" data-val="true" data-val-number="The field Streeet_Num must be a number." data-val-required="The Streeet_Num field is required." id="Application_CertOccParentAddress_Streeet_Num" name="Application.CertOccParentAddress.Streeet_Num" type="text" value=""/>
-                </div>
-                <div class="form-group col-md-2">
-                    <label class="control-label">Direction</label>
-                    <input class="form-control" id="Application_CertOccParentAddress_Street_Dir" name="Application.CertOccParentAddress.Street_Dir" type="text" value=""/>
-                </div>
-                <div class="form-group col-md-4">
-                    <label class="control-label">Street Name</label>
-                    <input class="form-control" id="Application_CertOccParentAddress_Street_Name" name="Application.CertOccParentAddress.Street_Name" type="text" value=""/>
-                </div>
-                <div class="form-group col-md-2">
-                    <label class="control-label">Street Type</label>
-                    <input class="form-control" id="Application_CertOccParentAddress_Street_Type" name="Application.CertOccParentAddress.Street_Type" type="text" value=""/>
-                </div>
-                <div class="form-group col-md-2">
-                    <label class="control-label">Unit/Suite</label>
-                    <input class="form-control" id="Application_CertOccParentAddress_Street_Unit" name="Application.CertOccParentAddress.Street_Unit" type="text" value=""/>
-                </div>
-            </div>
-                <div class="form-group">
-                    <label class="control-label">City</label>
-                    <input class="form-control" id="Application_CertOccParentAddress_City" name="Application.CertOccParentAddress.City" type="text" value=""/>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">State</label>
-                    <input class="form-control" id="Application_CertOccParentAddress_State" name="Application.CertOccParentAddress.State" type="text" value=""/>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Zip</label>
-                    <input class="form-control" id="Application_CertOccParentAddress_Zip" name="Application.CertOccParentAddress.Zip" type="text" value=""/>
-                </div>
-
-            </div>
-        </div>
-        <div class="panel panel-primary">
-            <div class="panel-heading">Business Activities</div>
-            <div class="panel-body">
-                <div class="form-group">
-                    <label class="control-label">Type of Business:</label>
-                    <input class="form-control" id="Application_BusinessType" name="Application.BusinessType" type="text" value=""/>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Description of Business Activities:</label>
-                    <textarea class="form-control" cols="20" id="Application_BusinessActivity" name="Application.BusinessActivity" rows="2"></textarea>
-                </div>
-            </div>
-        </div>
-        <div class="panel panel-primary">
-            <div class="panel-heading">Attachments</div>
-            <div class="panel-body">
-                <div class="form-group">
-                    <label class="control-label">
-                        Site Plan<br />
-                    </label>
-                    <a href="">Download</a>
-                </div>
-            </div>
-        </div>
-        <div class="panel panel-primary">
-            <div class="panel-heading">Verify</div>
-            <div class="panel-body center">
-                <p>The applicant has confirmed that the information entered is accurate, they are authorized to submit this application, and they understand understand that a fee of $25 will be required to receive the Certificate of Occupancy.</p>
-                <div class="form-group">
-                    <label class="checkbox-inline">
-                        <input type="checkbox" name="verify" value="verified"><strong>Yes</strong>
-                    </label>
-                </div>
-            </div>
-        </div>
-        <div class="center">
-            <button type="submit" class="btn btn-lg btn-success btn-responsive">Save Changes</button>
-        </div>
-</form>
-<!-- End Internal Review Form-->
 
 </div>
 </div>
