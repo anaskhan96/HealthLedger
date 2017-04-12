@@ -3,10 +3,13 @@
 
 <head>
     <title>HealthLedger | Home | Doctor</title>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script> -->
+    <script type="text/javascript" src="/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="/javascript.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css">
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script>-->
+    <script type="text/javascript" src="/materialize.min.js"></script>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css"> -->
+    <link rel="stylesheet" href="/materialize.min.css">
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -46,6 +49,36 @@
             max-height: none;
         }
     </style>
+    <script type="text/javascript">
+        function searchPatient() {
+            patientID = document.getElementById('patient_search').value;
+            $.ajax({
+				type: 'POST',
+				url: '/ledger/doctor',
+				contentType: 'application/json;charset=UTF-8',
+				dataType: 'json',
+				data: JSON.stringify({'patientID': patientID}),
+				success: function(res){
+                    if (res.medHist != null) {
+                        disease = res.medHist.disease;
+                        prescribed = res.medHist.prescribed;
+                        prescribedBy = res.medHist.prescribedBy;
+                    }
+                    if (res.allergies != null) {
+                        allergy = res.allergies.allergy;
+                    }
+                    if (res.insurancePolicy != null) {
+                        insurance = res.insurancePolicy.insurancePolicy;
+                        premium = res.insurancePolicy.premium;
+                        coverage = res.insurancePolicy.coverage;
+                    }
+				},
+				error: function(error){
+					console.log(error);
+				}
+			});
+        }
+    </script>
 </head>
 
 <body>
@@ -56,27 +89,25 @@
         <div class="jumbo"></div>
         <div class="big-icon"></div>
         <div class="details">
-            <h3><%= name %></h3>
-            <p><%= ID %></p>
+            <h3>Dr. <%= obj.name %></h3>
+            <p><%= obj.ID %></p>
         </div>
         <div class="container bio">
             <div class="title">
                 <h6>Personal Information</h6>
             </div>
             <div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro officiis fugit hic vel voluptates perferendis
-                    aut quibusdam sit omnis unde aspernatur quae repellat blanditiis autem, a libero asperiores neque illum
-                    aliquid est tempore. Eveniet velit voluptate amet facere, repellendus aperiam, cumque est ipsam. Asperiores
-                    expedita iusto, inventore sit suscipit nihil repudiandae? Laboriosam cum maxime dolorem neque, in veniam
-                    expedita ad. Hic fugit necessitatibus blanditiis, optio dignissimos molestiae nam, numquam odio.</p>
+                <p><i>ID:</i> <%= obj.ID %></p>
+                <p><i>Name:</i> <%= obj.name %></p>
+                <p><i>DOB:</i> <%= obj.dob %></p>
             </div>
             <hr />
         </div>
         <div class="search_list">
-            <h5>Search Patient Name</h5>
+            <h5>Patient ID</h5>
 
-            <input type="text" id="patient_search" placeholder="Search patient names.." title="Type in a name">
-            <button class="button" onclick="search_patient"><span>Search </span></button>
+            <input type="text" id="patient_search" placeholder="Type Patient ID here..." title="Type in a name">
+            <button class="button" onclick="searchPatient();"><span>Search </span></button>
 
         </div>
             <div class="container posts">
@@ -281,6 +312,15 @@
             </div>
         </div>
     </footer>
+    <script>
+        disease = "";
+        prescribed = "";
+        prescribedBy = "";
+        allergy = "";
+        insurance = "";
+        premium = "";
+        coverage = "";
+    </script>
 
 </body>
 

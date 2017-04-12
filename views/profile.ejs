@@ -2,16 +2,19 @@
 <html>
 <head>
 <title>HealthLedger | Home</title>
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>    
+<!-- <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script> -->
+<script type="text/javascript" src="/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="javascript.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css">
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script> -->
+<script type="text/javascript" src="/materialize.min.js"></script>
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css"> -->
+<link rel="stylesheet" href="/materialize.min.css">
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="https://cdn.rawgit.com/anaskhan96/HealthLedger/master/public/style_profile.css" rel="stylesheet">
-<!-- <link href="style_profile.css" rel="stylesheet"> -->
+<!-- <link href="https://cdn.rawgit.com/anaskhan96/HealthLedger/master/public/style_profile.css" rel="stylesheet"> -->
+<link href="style_profile.css" rel="stylesheet">
 <style>
 	.card-content {
 		overflow: hidden;
@@ -62,15 +65,17 @@
 	<div class="jumbo"></div>
 	<div class="big-icon"></div>
 	<div class="details">
-		<h3><%= name %></h3>
-		<p><%= ID %></p>
+		<h3><%= obj.name %></h3>
+		<p><%= obj.ID %></p>
 	</div>
 	<div class="container bio">
 			<div class="title">
 				<h6>Personal Information</h6>
 			</div>
 			<div>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro officiis fugit hic vel voluptates perferendis aut quibusdam sit omnis unde aspernatur quae repellat blanditiis autem, a libero asperiores neque illum aliquid est tempore. Eveniet velit voluptate amet facere, repellendus aperiam, cumque est ipsam. Asperiores expedita iusto, inventore sit suscipit nihil repudiandae? Laboriosam cum maxime dolorem neque, in veniam expedita ad. Hic fugit necessitatibus blanditiis, optio dignissimos molestiae nam, numquam odio.</p>
+				<p><i>ID:</i> <%= obj.ID %></p>
+				<p><i>Name:</i> <%= obj.name %></p>
+				<p><i>DOB:</i> <%= obj.dob %></p>
 			</div>
 			<hr />
 	</div>
@@ -205,12 +210,12 @@
 		</div>
 		<ul class="collapsible" data-collapsible="accordion">
 			<li>
-				<div class="collapsible-header"><i class="material-icons">filter_drama</i>General Information</div>
-				<div class="collapsible-body"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias tempora nobis, amet ipsa qui officiis modi consequatur reprehenderit expedita nihil ab recusandae, molestiae. Maiores reprehenderit mollitia nisi perferendis quisquam eos repudiandae harum ducimus, impedit et numquam tempore? Labore explicabo sit mollitia sequi doloribus perspiciatis rem corporis veniam, aspernatur autem, tempore consequuntur asperiores excepturi quas ratione natus! Nesciunt, animi! Laudantium quia, aliquam non dolorem, aliquid quod soluta sit id suscipit facilis! Omnis qui in perferendis debitis quam architecto dignissimos sequi asperiores, porro explicabo blanditiis voluptate, totam necessitatibus quia repellendus dolorum animi accusamus molestias assumenda culpa unde sapiente magnam aut fuga? A quae magnam, ipsam modi minus. Optio nihil consequuntur rem quas, eveniet temporibus at atque voluptas voluptatibus beatae animi aliquam quos natus cum magni nobis doloremque illum incidunt, tenetur, quasi sunt aperiam? Reprehenderit officiis consequuntur repellat, atque provident quam. Ut perferendis libero fugiat hic nobis, iusto at dolorum ratione, facere, ipsum saepe, aliquid officia nihil. Inventore, voluptatibus animi sunt ratione adipisci reprehenderit nostrum qui cumque eum ut! Minima suscipit ratione voluptates, et, temporibus vitae doloribus ipsa ipsam. Eligendi ducimus distinctio perferendis praesentium. Eius dolor magni perspiciatis velit, possimus unde quis ea in inventore veritatis facere dicta delectus officiis aut vero voluptatum.</p></div>
+				<div class="collapsible-header"><i class="material-icons">filter_drama</i>Hospital ID</div>
+				<div class="collapsible-body"><p><%= hospitalDetails.id %></p></div>
 			</li>
 			<li>
 			    <div class="collapsible-header"><i class="material-icons">place</i>Location Details</div>
-			    <div class="collapsible-body"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam iure ratione facilis sapiente est, repellendus nesciunt voluptatum tempore magni natus, eius, cumque voluptates illo earum libero obcaecati, deleniti ducimus similique accusamus! Autem totam ipsa minus modi sed tempora porro. Commodi iste inventore fugit reprehenderit maiores dolorem cupiditate debitis repellat, perferendis minus sed, ipsa nulla, beatae eum nobis, asperiores aut aspernatur fuga mollitia itaque. Doloremque reprehenderit earum molestias non voluptatem veniam voluptates expedita, at, eius sunt rerum perspiciatis suscipit iure perferendis. Earum, quasi beatae qui unde ullam fuga assumenda! Consectetur natus temporibus, ipsa, mollitia odit, aliquid id aliquam assumenda quidem, optio ducimus dolor quis corporis iure praesentium sunt rem facilis atque quod odio. Rerum dolores aperiam numquam rem expedita, alias officiis officia minima impedit, beatae libero debitis eligendi. Placeat consequatur non, consectetur accusantium laborum sequi. Explicabo facilis officiis culpa debitis dicta omnis illo quo natus iste, fugiat vitae magni voluptatum. Sequi, illum! Ea voluptatum at similique, sint quisquam dolorum fuga repellat perferendis animi ullam eligendi, sed sapiente placeat non ducimus modi sit tempore reprehenderit deserunt cumque molestiae quod! Ipsam pariatur dicta iusto, illum in vel optio nam aut reprehenderit quam minima dolorem, eaque dignissimos harum. Nobis porro id molestiae eaque reprehenderit voluptas optio, assumenda, nisi fuga cupiditate, minima consequatur fugit dolorum. Ipsam harum, aspernatur.</p></div>
+			    <div class="collapsible-body"><p><%= hospitalDetails.location %></p></div>
 			</li>
 			<li>
 			    <div class="collapsible-header"><i class="material-icons">whatshot</i>Facilities</div>
@@ -250,6 +255,21 @@
             </div>
           </div>
         </footer>
+		<script>
+			<% if(medHist != null) { %>
+				disease = <%- JSON.stringify(medHist.disease) %>;
+				prescribed = <%- JSON.stringify(medHist.prescribed) %>;
+				prescribedBy = <%- JSON.stringify(medHist.prescribedBy) %>;
+			<% } %>
+			<% if(allergies != null) { %>
+				allergy = <%- JSON.stringify(allergies.allergy) %>;
+			<% } %>
+			<% if(insurancePolicy != null) { %>
+				insurance = <%- JSON.stringify(insurancePolicy.insurancePolicy) %>;
+				premium = <%- JSON.stringify(insurancePolicy.premium) %>;
+				coverage = <%- JSON.stringify(insurancePolicy.coverage) %>;
+			<% } %>
+		</script>
 
 </body>
 

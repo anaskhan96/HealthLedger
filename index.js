@@ -10,7 +10,22 @@ var mqtt = require('mqtt');
 var schedule = require('node-schedule');
 
 let db = null;
+
 let obj = null;
+let medHist = null;
+let allergies = null;
+let reports = null;
+let insurancePolicy = null;
+let hospitalDetails = null;
+
+// The horrors I have to go through
+let patientObj = null;
+let patientMedHist = null;
+let patientAllergies = null;
+let patientReports = null;
+let patientInsurancePolicy = null;
+let patientHospitalDetails = null;
+let patientJson = { 'obj': null, 'medHist': null, 'allergies': null, 'insurancePolicy': null, 'hospitalDetails': null };
 
 // connecting to the mongo db server
 mongoClient.connect(url, function (err, database) {
@@ -42,43 +57,124 @@ app.get('/ledger/login', function (req, res) {
 	res.render("index.ejs");
 });
 
-app.post('/ledger/login', function(req, res){
+app.post('/ledger/login', function (req, res) {
 	console.log('POST /ledger/login');
 	var ID = req.body.ID;
 	var type = req.body.user;
 	var cursor = null;
-	if(type == "doctor")
-		cursor = db.collection('doctors').find({"ID": ID});
-	else
-		cursor = db.collection('patients').find({"_id": ID});
-	cursor.each(function(err,doc){
-		if(doc != null){
-			console.log(doc.Name);
-			obj =  {'type': type, 'ID': ID, 'name': doc.Name};
-			if(type == 'patient')
-				res.redirect('/ledger');
-			else
+	var cursorMedHist = null; // medhist, treatment, and doctor details
+	var cursorAllergies = null;
+	var cursorInsurancePolicy = null;
+	var cursorHospital = null;
+	if (type == "doctor") {
+		cursor = db.collection('doctors').find({ "ID": ID });
+		cursor.each(function (err, doc) {
+			if (doc != null) {
+				obj = { 'ID': ID, 'name': doc.Name, 'dob': doc.DOB }
 				res.redirect('/ledger/doctor');
+			}
+		});
+	}
+	else {
+		cursor = db.collection('patients').find({ "_id": ID });
+		cursorMedHist = db.collection('treatment').find({ "Patient_id": ID });
+		cursorAllergies = db.collection('allergen').find({ "_id": ID });
+		cursorInsurancePolicy = db.collection('insurance').find({ "Patient_id": ID });
+		cursorHospital = db.collection('hospitals').find({ "_id": ID.slice(0, 4) });
+		cursorMedHist.each(function (err, doc) {
+			if (doc != null) {
+				medHist = { 'disease': doc.Treat_for, 'prescribed': doc.Prescription, 'prescribedBy': doc.Doctor_id };
+			}
+		});
+		cursorAllergies.each(function (err, doc) {
+			if (doc != null) {
+				allergies = { 'allergy': doc.Allergy };
+			}
+		});
+		cursorHospital.each(function (err, doc) {
+			if (doc != null) {
+				hospitalDetails = { 'id': doc._id, 'location': doc.Location };
+			}
+		});
+		if (hospitalDetails == null) {
+			hospitalDetails = { 'id': 'H000', 'location': 'Florida' };
 		}
-	});
+		cursorInsurancePolicy.each(function (err, doc) {
+			if (doc != null) {
+				insurancePolicy = { 'insurancePolicy': doc._id, 'premium': doc.Premium, 'coverage': doc.Coverage };
+			}
+		});
+		cursor.each(function (err, doc) {
+			if (doc != null) {
+				console.log(doc.Name);
+				obj = { 'ID': ID, 'name': doc.Name, 'dob': doc.DOB };
+				res.redirect('/ledger');
+			}
+		});
+	}
 });
 
 // GET /ledger
 app.get('/ledger', function (request, response) {
 	console.log("GET /ledger")
-	if(obj != null)
-		response.render("profile.ejs", obj);
+	if (obj != null) {
+		response.render("profile.ejs", { 'obj': obj, 'medHist': medHist, 'allergies': allergies, 'insurancePolicy': insurancePolicy, 'hospitalDetails': hospitalDetails });
+	}
 	else
 		response.send('not happening');
 });
 
 // GET /ledger/doctor
-app.get('/ledger/doctor', function(req,res){
+app.get('/ledger/doctor', function (req, res) {
 	console.log("GET /ledger/doctor");
-	if(obj != null)
-		res.render("doctor_profile.ejs", obj);
+	if (obj != null)
+		res.render("doctor_profile.ejs", { 'obj': obj });
 	else
 		res.send('not happening');
+});
+
+// POST /ledger/doctor
+app.post('/ledger/doctor', function (req, res) {
+	var patientID = req.body.patientID;
+	var cursor = db.collection('patients').find({ "_id": patientID });
+	var cursorMedHist = db.collection('treatment').find({ "Patient_id": patientID });
+	var cursorAllergies = db.collection('allergen').find({ "_id": patientID });
+	var cursorInsurancePolicy = db.collection('insurance').find({ "Patient_id": patientID });
+	var cursorHospital = db.collection('hospitals').find({ "_id": patientID.slice(0, 4) });
+	cursorMedHist.each(function (err, doc) {
+		if (doc != null) {
+			patientMedHist = { 'disease': doc.Treat_for, 'prescribed': doc.Prescription, 'prescribedBy': doc.Doctor_id };
+			patientJson['medHist'] = patientMedHist;
+		}
+	});
+	cursorAllergies.each(function (err, doc) {
+		if (doc != null) {
+			patientAllergies = { 'allergy': doc.Allergy };
+			patientJson['allergies'] = patientAllergies;
+		}
+	});
+	cursorHospital.each(function (err, doc) {
+		if (doc != null) {
+			patientHospitalDetails = { 'id': doc._id, 'location': doc.Location };
+			patientJson['hospitalDetails'] = patientHospitalDetails;
+		}
+	});
+	if (patientHospitalDetails == null) {
+		patientHospitalDetails = { 'id': 'H000', 'location': 'Florida' };
+	}
+	cursorInsurancePolicy.each(function (err, doc) {
+		if (doc != null) {
+			patientInsurancePolicy = { 'insurancePolicy': doc._id, 'premium': doc.Premium, 'coverage': doc.Coverage };
+			patientJson['insurancePolicy'] = patientInsurancePolicy;
+		}
+	});
+	cursor.each(function (err, doc) {
+		if (doc != null) {
+			patientObj = { 'ID': patientID, 'name': doc.Name, 'dob': doc.DOB };
+			patientJson['obj'] = patientObj;
+			res.send(patientJson);
+		}
+	});
 });
 
 // GET /ledger (called when switch button is clicked)
@@ -115,18 +211,25 @@ app.post('/ledger/react-check', function (req, res) {
 	var msgToSend = "";
 	var led = data.led.slice(4);
 	var time = data.time;
-	var hour = parseInt(time.slice(0,1));
-	if(time.slice(2) == "PM")
+	var hour = parseInt(time.slice(0, 1));
+	if (time.slice(2) == "PM")
 		hour = hour + 12;
-	msgToSend = "l"+led+"1";
+	msgToSend = "l" + led + "1";
 	// Scheduling according to GMT +0000
-	var j = schedule.scheduleJob({hour: 3, minute: 40}, function(){
+	var j = schedule.scheduleJob({ hour: hour - 6, minute: 30 }, function () {
 		console.log("Scheduler called");
 		client.publish('mpca', msgToSend);
 		console.log("Published at the scheduled time");
 	});
 	var confirmation = "Message Sent to MQTT";
-	res.send({"confirm":confirmation});
+	res.send({ "confirm": confirmation });
+});
+
+app.post('/ledger/now', function(req, res) {
+	var led = req.body.led.slice(4);
+	msg = "l" + led + "1";
+	client.publish('mpca', msg);
+	res.send({ 'confirm': 'Message Sent Now' });
 });
 
 // Listening on 127.0.0.1:5000

@@ -79,7 +79,8 @@ function readMore(event) {
 		d.appendChild(e);
 
 		e = document.createElement("p");
-		e.innerHTML = ""
+		e.innerHTML = disease;
+		d.appendChild(e);
 
 		//for loop here append diseases from backend
 	}
@@ -98,7 +99,7 @@ function readMore(event) {
 		d.appendChild(e);
 
 		e = document.createElement("p");
-		e.innerHTML = ""; //Treat_for from backend
+		e.innerHTML = disease; //Treat_for from backend
 		d.appendChild(e);
 
 		e = document.createElement("label");
@@ -106,7 +107,7 @@ function readMore(event) {
 		d.appendChild(e);
 
 		e = document.createElement("p");
-		e.innerHTML = ""; //Prescription from backend
+		e.innerHTML = prescribed; //Prescription from backend
 		d.appendChild(e);
 
 		e = document.createElement("label");
@@ -114,7 +115,7 @@ function readMore(event) {
 		d.appendChild(e);
 
 		e = document.createElement("p");
-		e.innerHTML = ""; //Doctor_id from backend
+		e.innerHTML = prescribedBy; //Doctor_id from backend
 		d.appendChild(e);
 	}
 	else if( !d.id.localeCompare("docdet")) {
@@ -132,7 +133,7 @@ function readMore(event) {
 		d.appendChild(e);
 
 		e = document.createElement("p");
-		e.innerHTML = ""; //Doctor_id from backend
+		e.innerHTML = prescribedBy; //Doctor_id from backend
 		d.appendChild(e);
 	}
 	else if( !d.id.localeCompare("allergies")) {
@@ -150,7 +151,7 @@ function readMore(event) {
 		d.appendChild(e);
 
 		e = document.createElement("p");
-		e.innerHTML = ""; 	//Allergy from backend
+		e.innerHTML = allergy; 	//Allergy from backend
 		d.appendChild(e);
 	}
 	else if( !d.id.localeCompare("rep")) {
@@ -187,7 +188,7 @@ function readMore(event) {
 		d.appendChild(e);
 
 		e = document.createElement("p");
-		e.innerHTML = ""; //_id from backend
+		e.innerHTML = insurance; //_id from backend
 		d.appendChild(e);
 
 		e = document.createElement("label");
@@ -195,7 +196,7 @@ function readMore(event) {
 		d.appendChild(e);
 
 		e = document.createElement("p");
-		e.innerHTML = ""; //Premium from backend
+		e.innerHTML = premium; //Premium from backend
 		d.appendChild(e);
 
 		e = document.createElement("label");
@@ -203,7 +204,7 @@ function readMore(event) {
 		d.appendChild(e);
 
 		e = document.createElement("p");
-		e.innerHTML = ""; //Coverage from backend
+		e.innerHTML = coverage; //Coverage from backend
 		d.appendChild(e);
 	}
 	else if( !d.id.localeCompare("dmedhist")) {
