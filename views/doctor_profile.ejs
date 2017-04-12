@@ -92,12 +92,30 @@
             <h3>Dr. <%= obj.name %></h3>
             <p><%= obj.ID %></p>
         </div>
+
+        <div class="container bio">
+            <div class="title">
+                <h6>Personal Information</h6>
+            </div>
+            <div>
+                <p><i>ID:</i> <%= obj.ID %></p>
+                <p><i>Name:</i> <%= obj.name %></p>
+                <p><i>DOB:</i> <%= obj.dob %></p>
+            </div>
+            <hr />
+        </div>
         
         <div class="search_list">
             <h5>Patient ID</h5>
 
             <input type="text" id="patient_search" placeholder="Type Patient ID here..." title="Type in a name">
             <button class="button" onclick="searchPatient();"><span>Search </span></button>
+
+            <hr>
+
+            <h5 style="margin-top: 4rem;">New Patient ID</h5>
+            <input type="text" id="patient_search" placeholder="Type New Patient ID here..." title="Type in a name">
+            <button class="button" onclick="searchPatient();" style="width: 30%;"><span>Add Patient </span></button>
 
         </div>
     </main>
