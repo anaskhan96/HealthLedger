@@ -128,41 +128,53 @@ app.get('/ledger/doctor', function (req, res) {
 
 // POST /ledger/doctor
 app.post('/ledger/doctor', function (req, res) {
-	var patientID = req.body.patientID;
-	var cursor = db.collection('patients').find({ "_id": patientID });
-	var cursorMedHist = db.collection('treatment').find({ "Patient_id": patientID });
-	var cursorAllergies = db.collection('allergen').find({ "_id": patientID });
-	var cursorInsurancePolicy = db.collection('insurance').find({ "Patient_id": patientID });
-	var cursorHospital = db.collection('hospitals').find({ "_id": patientID.slice(0, 4) });
-	cursorMedHist.each(function (err, doc) {
-		if (doc != null) {
-			medHist = { 'disease': doc.Treat_for, 'prescribed': doc.Prescription, 'prescribedBy': doc.Doctor_id };
+	if (typeof (req.body.rpid) == 'undefined') {
+		var patientID = req.body.patientID;
+		var cursor = db.collection('patients').find({ "_id": patientID });
+		var cursorMedHist = db.collection('treatment').find({ "Patient_id": patientID });
+		var cursorAllergies = db.collection('allergen').find({ "_id": patientID });
+		var cursorInsurancePolicy = db.collection('insurance').find({ "Patient_id": patientID });
+		var cursorHospital = db.collection('hospitals').find({ "_id": patientID.slice(0, 4) });
+		cursorMedHist.each(function (err, doc) {
+			if (doc != null) {
+				medHist = { 'disease': doc.Treat_for, 'prescribed': doc.Prescription, 'prescribedBy': doc.Doctor_id };
+			}
+		});
+		cursorAllergies.each(function (err, doc) {
+			if (doc != null) {
+				allergies = { 'allergy': doc.Allergy };
+			}
+		});
+		cursorHospital.each(function (err, doc) {
+			if (doc != null) {
+				hospitalDetails = { 'id': doc._id, 'location': doc.Location };
+			}
+		});
+		if (hospitalDetails == null) {
+			hospitalDetails = { 'id': 'H000', 'location': 'Florida' };
 		}
-	});
-	cursorAllergies.each(function (err, doc) {
-		if (doc != null) {
-			allergies = { 'allergy': doc.Allergy };
-		}
-	});
-	cursorHospital.each(function (err, doc) {
-		if (doc != null) {
-			hospitalDetails = { 'id': doc._id, 'location': doc.Location };
-		}
-	});
-	if (hospitalDetails == null) {
-		hospitalDetails = { 'id': 'H000', 'location': 'Florida' };
+		cursorInsurancePolicy.each(function (err, doc) {
+			if (doc != null) {
+				insurancePolicy = { 'insurancePolicy': doc._id, 'premium': doc.Premium, 'coverage': doc.Coverage };
+			}
+		});
+		cursor.each(function (err, doc) {
+			if (doc != null) {
+				obj = { 'ID': patientID, 'name': doc.Name, 'dob': doc.DOB };
+				res.redirect('/ledger');
+			}
+		});
+	} else {
+		// Remove patient from db over here
+		var ID = req.body.rpid;
+		db.collection('patients').remove({ _id: ID });
+		db.collection('allergen').remove({ _id: ID });
+		db.collection('medhist').remove({ _id: ID });
+		db.collection('insurance').remove({ Patient_id: ID });
+		db.collection('treating').remove({ _id: ID });
+		db.collection('treatment').remove({ Patient_id: ID });
+		res.send('Patient '+ID+' deleted from database!');
 	}
-	cursorInsurancePolicy.each(function (err, doc) {
-		if (doc != null) {
-			insurancePolicy = { 'insurancePolicy': doc._id, 'premium': doc.Premium, 'coverage': doc.Coverage };
-		}
-	});
-	cursor.each(function (err, doc) {
-		if (doc != null) {
-			obj = { 'ID': patientID, 'name': doc.Name, 'dob': doc.DOB };
-			res.redirect('/ledger');
-		}
-	});
 });
 
 // GET /ledger (called when switch button is clicked)
