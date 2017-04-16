@@ -1,10 +1,8 @@
 var express = require('express');
 var app = express();
-var bodyParser = require('body-parser'); // required for AJAX POST
+var bodyParser = require('body-parser');
 var mongodb = require('mongodb'); // mongodb package for node
 var mongoClient = mongodb.MongoClient;
-//uncomment before commit
-//var url = 'mongodb://dbms:shaata420@anask.xyz:27017/HealthLedger';
 var url = 'mongodb://localhost:27017/HealthLedger';
 var mqtt = require('mqtt');
 var schedule = require('node-schedule');
@@ -17,6 +15,7 @@ let medHist = null;
 let allergies = null;
 let reports = null;
 let insurancePolicy = null;
+// The horrors I have to go through
 let hospitalDetails = { 'id': 'H000', 'location': 'Florida' };
 
 
