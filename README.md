@@ -1,4 +1,4 @@
-# Health Ledger [WIP]
+# Health Ledger
 
 [![Build Status](https://travis-ci.org/anaskhan96/HealthLedger.svg?branch=master)](https://travis-ci.org/anaskhan96/HealthLedger)
 
